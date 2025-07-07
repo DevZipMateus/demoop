@@ -60,14 +60,16 @@ const DemoopHero = () => {
           {/* Logo Section */}
           <div className="flex justify-center lg:justify-end opacity-0 animate-slide-up animation-delay-600">
             <div className="relative">
-              <div className="w-80 h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-demoop-green/20 to-demoop-blue/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/20 shadow-2xl">
+              {/* Pulsating circle behind logo */}
+              <div className="absolute -inset-4 bg-gradient-to-r from-demoop-green to-demoop-blue rounded-full blur opacity-20 animate-pulse z-0"></div>
+              {/* Logo container with higher z-index */}
+              <div className="w-80 h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-demoop-green/20 to-demoop-blue/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/20 shadow-2xl relative z-10">
                 <img 
                   src="/lovable-uploads/dabf577d-abec-4c2f-aab4-f1a1c600dc29.png" 
                   alt="Demoop Logo" 
-                  className="w-64 h-64 lg:w-80 lg:h-80 object-contain drop-shadow-2xl"
+                  className="w-64 h-64 lg:w-80 lg:h-80 object-contain drop-shadow-2xl relative z-20"
                 />
               </div>
-              <div className="absolute -inset-4 bg-gradient-to-r from-demoop-green to-demoop-blue rounded-full blur opacity-20 animate-pulse"></div>
             </div>
           </div>
         </div>
