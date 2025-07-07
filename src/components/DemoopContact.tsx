@@ -83,26 +83,26 @@ Mensagem: ${formData.message}`;
   ];
 
   return (
-    <section id="contact" className="section-container bg-gradient-to-br from-demoop-lightgreen/20 to-white">
-      <div className="text-center mb-16">
-        <h2 className="section-title text-demoop-primary">
+    <section id="contact" className="py-12 sm:py-16 lg:py-20 xl:py-24 px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 max-w-7xl mx-auto bg-gradient-to-br from-demoop-lightgreen/20 to-white">
+      <div className="text-center mb-12 sm:mb-16">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light mb-4 text-demoop-primary tracking-tight leading-tight">
           Entre em Contato
         </h2>
-        <p className="section-subtitle text-muted-foreground">
+        <p className="text-base sm:text-lg lg:text-xl xl:text-2xl max-w-4xl mx-auto mb-8 sm:mb-12 text-muted-foreground font-light tracking-wide leading-relaxed">
           Estamos prontos para atender você da melhor forma
         </p>
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-12">
+      <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
         {/* Formulário de Contato */}
-        <Card className="bg-white/90 backdrop-blur-sm border-demoop-green/20 shadow-xl">
-          <CardHeader>
-            <CardTitle className="text-2xl text-demoop-primary text-center">
+        <Card className="bg-white/90 backdrop-blur-sm border-demoop-green/20 shadow-xl order-2 lg:order-1">
+          <CardHeader className="p-6 sm:p-8 pb-4 sm:pb-6">
+            <CardTitle className="text-xl sm:text-2xl text-demoop-primary text-center">
               Envie sua Mensagem
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <CardContent className="p-6 sm:p-8 pt-0">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-demoop-primary mb-2">
                   Nome Completo *
@@ -114,7 +114,7 @@ Mensagem: ${formData.message}`;
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="border-demoop-green/30 focus:border-demoop-green focus:ring-demoop-green/20"
+                  className="border-demoop-green/30 focus:border-demoop-green focus:ring-demoop-green/20 text-sm sm:text-base"
                   placeholder="Seu nome completo"
                 />
               </div>
@@ -130,7 +130,7 @@ Mensagem: ${formData.message}`;
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="border-demoop-green/30 focus:border-demoop-green focus:ring-demoop-green/20"
+                  className="border-demoop-green/30 focus:border-demoop-green focus:ring-demoop-green/20 text-sm sm:text-base"
                   placeholder="seu@email.com"
                 />
               </div>
@@ -145,7 +145,7 @@ Mensagem: ${formData.message}`;
                   type="tel"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className="border-demoop-green/30 focus:border-demoop-green focus:ring-demoop-green/20"
+                  className="border-demoop-green/30 focus:border-demoop-green focus:ring-demoop-green/20 text-sm sm:text-base"
                   placeholder="(48) 99999-9999"
                 />
               </div>
@@ -161,14 +161,14 @@ Mensagem: ${formData.message}`;
                   onChange={handleInputChange}
                   required
                   rows={4}
-                  className="border-demoop-green/30 focus:border-demoop-green focus:ring-demoop-green/20 resize-none"
+                  className="border-demoop-green/30 focus:border-demoop-green focus:ring-demoop-green/20 resize-none text-sm sm:text-base"
                   placeholder="Conte-nos como podemos ajudar você..."
                 />
               </div>
 
               <Button 
                 type="submit"
-                className="w-full bg-demoop-primary hover:bg-demoop-darkgreen text-white py-4 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                className="w-full bg-demoop-primary hover:bg-demoop-darkgreen text-white py-3 sm:py-4 text-base sm:text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
               >
                 💬 Enviar via WhatsApp
               </Button>
@@ -177,31 +177,31 @@ Mensagem: ${formData.message}`;
         </Card>
 
         {/* Métodos de Contato */}
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8 order-1 lg:order-2">
           <div>
-            <h3 className="text-2xl font-semibold text-demoop-primary mb-6 text-center lg:text-left">
+            <h3 className="text-xl sm:text-2xl font-semibold text-demoop-primary mb-4 sm:mb-6 text-center lg:text-left">
               Outras formas de contato
             </h3>
-            <div className="grid gap-4">
+            <div className="grid gap-3 sm:gap-4">
               {contactMethods.map((method, index) => (
                 <Card 
                   key={index}
                   onClick={method.action}
                   className="bg-white/80 backdrop-blur-sm border-demoop-green/20 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group hover:scale-105"
                 >
-                  <CardContent className="p-6 flex items-center space-x-4">
-                    <div className={`w-14 h-14 rounded-full bg-gradient-to-r ${method.color} flex items-center justify-center text-2xl shadow-lg group-hover:shadow-xl transition-all duration-300`}>
+                  <CardContent className="p-4 sm:p-6 flex items-center space-x-3 sm:space-x-4">
+                    <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-r ${method.color} flex items-center justify-center text-xl sm:text-2xl shadow-lg group-hover:shadow-xl transition-all duration-300 flex-shrink-0`}>
                       {method.icon}
                     </div>
-                    <div className="flex-1">
-                      <h4 className="text-lg font-semibold text-demoop-primary group-hover:text-demoop-blue transition-colors duration-300">
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-base sm:text-lg font-semibold text-demoop-primary group-hover:text-demoop-blue transition-colors duration-300">
                         {method.title}
                       </h4>
-                      <p className="text-muted-foreground">
+                      <p className="text-muted-foreground text-sm sm:text-base truncate">
                         {method.description}
                       </p>
                     </div>
-                    <div className="text-demoop-green text-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="text-demoop-green text-lg sm:text-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0">
                       →
                     </div>
                   </CardContent>
@@ -211,22 +211,22 @@ Mensagem: ${formData.message}`;
           </div>
 
           <Card className="bg-gradient-to-r from-demoop-green/10 to-demoop-blue/10 border-demoop-green/20 shadow-lg">
-            <CardContent className="p-8 text-center">
-              <h3 className="text-xl font-semibold text-demoop-primary mb-4">
+            <CardContent className="p-6 sm:p-8 text-center">
+              <h3 className="text-lg sm:text-xl font-semibold text-demoop-primary mb-3 sm:mb-4">
                 Atendimento Especializado
               </h3>
-              <p className="text-muted-foreground mb-6">
+              <p className="text-muted-foreground mb-4 sm:mb-6 text-sm sm:text-base">
                 Nossa equipe está pronta para ajudar você a encontrar os melhores produtos de limpeza 
                 para suas necessidades específicas.
               </p>
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-demoop-green">9 anos</div>
-                  <div className="text-sm text-muted-foreground">de experiência</div>
+                  <div className="text-xl sm:text-2xl font-bold text-demoop-green">9 anos</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">de experiência</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-demoop-blue">24h</div>
-                  <div className="text-sm text-muted-foreground">resposta WhatsApp</div>
+                  <div className="text-xl sm:text-2xl font-bold text-demoop-blue">24h</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">resposta WhatsApp</div>
                 </div>
               </div>
             </CardContent>
