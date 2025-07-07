@@ -1,13 +1,12 @@
 
 import React, { useEffect } from 'react';
 import NavBar from '@/components/NavBar';
-import Hero from '@/components/Hero';
-import Services from '@/components/Services';
-import HowItWorks from '@/components/HowItWorks';
-import AboutUs from '@/components/AboutUs';
-import Reviews from '@/components/Reviews';
-import FAQ from '@/components/FAQ';
-import Contact from '@/components/Contact';
+import DemoopHero from '@/components/DemoopHero';
+import DemoopAbout from '@/components/DemoopAbout';
+import DemoopServices from '@/components/DemoopServices';
+import DemoopTestimonials from '@/components/DemoopTestimonials';
+import DemoopLocation from '@/components/DemoopLocation';
+import DemoopContact from '@/components/DemoopContact';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import ClickSpark from '@/components/ClickSpark';
@@ -69,25 +68,22 @@ const Index = () => {
         ></div>
         
         <NavBar />
-        <Hero />
+        <DemoopHero />
         <div className="space-y-0 relative z-10">
           <div className="section-bg-semi">
-            <Services />
+            <DemoopAbout />
           </div>
           <div className="section-bg-alt">
-            <HowItWorks />
+            <DemoopServices />
           </div>
           <div className="section-bg-semi">
-            <AboutUs />
+            <DemoopTestimonials />
           </div>
           <div className="section-bg-alt">
-            <Reviews />
+            <DemoopLocation />
           </div>
           <div className="section-bg-semi">
-            <FAQ />
-          </div>
-          <div className="section-bg-alt">
-            <Contact />
+            <DemoopContact />
           </div>
         </div>
         <Footer />

@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
-import { Menu, X, Settings } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 
 const NavBar = () => {
@@ -32,10 +32,10 @@ const NavBar = () => {
 
   const navLinks = [
     { name: 'Início', id: 'home' },
+    { name: 'Sobre', id: 'about' },
     { name: 'Serviços', id: 'services' },
-    { name: 'Como Funciona', id: 'how-it-works' },
-    { name: 'Sobre Nós', id: 'about' },
-    { name: 'Avaliações', id: 'reviews' },
+    { name: 'Depoimentos', id: 'testimonials' },
+    { name: 'Localização', id: 'location' },
     { name: 'Contato', id: 'contact' },
   ];
 
@@ -52,15 +52,19 @@ const NavBar = () => {
         <div className="flex items-center">
           <a 
             href="#home" 
-            className="flex items-center space-x-2 text-orange-500 font-display font-bold text-lg sm:text-xl lg:text-2xl"
+            className="flex items-center space-x-2 font-display font-bold text-lg sm:text-xl lg:text-2xl"
             onClick={(e) => {
               e.preventDefault();
               scrollToSection('home');
             }}
           >
-            <Settings className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 text-red-600" />
-            <span className="hidden sm:inline">TechHelp <span className="text-red-600">Soluções</span></span>
-            <span className="sm:hidden">TechHelp</span>
+            <img 
+              src="/lovable-uploads/dabf577d-abec-4c2f-aab4-f1a1c600dc29.png" 
+              alt="Demoop Logo" 
+              className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12" 
+            />
+            <span className="hidden sm:inline text-demoop-primary">Demoop <span className="text-demoop-blue">Limpeza</span></span>
+            <span className="sm:hidden text-demoop-primary">Demoop</span>
           </a>
         </div>
 
@@ -70,14 +74,14 @@ const NavBar = () => {
             <a
               key={link.id}
               href={`#${link.id}`}
-              className="text-orange-500 hover:text-red-600 transition-colors duration-300 text-sm xl:text-base font-medium relative group"
+              className="text-demoop-primary hover:text-demoop-blue transition-colors duration-300 text-sm xl:text-base font-medium relative group"
               onClick={(e) => {
                 e.preventDefault();
                 scrollToSection(link.id);
               }}
             >
               {link.name}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-demoop-blue transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
         </nav>
@@ -86,21 +90,25 @@ const NavBar = () => {
         <Sheet>
           <SheetTrigger asChild>
             <button 
-              className="lg:hidden text-orange-500 p-2 rounded-md hover:bg-tech-lightgray/50 transition-colors" 
+              className="lg:hidden text-demoop-primary p-2 rounded-md hover:bg-demoop-lightgreen/50 transition-colors" 
               aria-label="Open menu"
             >
               <Menu size={20} className="sm:w-6 sm:h-6" />
             </button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-[90%] sm:w-[85%] p-0 bg-gradient-to-br from-white to-tech-lightgray border-l-4 border-red-600">
+          <SheetContent side="right" className="w-[90%] sm:w-[85%] p-0 bg-gradient-to-br from-white to-demoop-lightgreen border-l-4 border-demoop-blue">
             <div className="flex flex-col h-full">
-              <div className="flex justify-between items-center p-4 sm:p-6 border-b border-tech-lightgray">
-                <div className="flex items-center space-x-2 font-display font-bold text-lg sm:text-xl text-orange-500">
-                  <Settings className="h-5 w-5 sm:h-6 sm:w-6 text-red-600" />
-                  <span>TechHelp <span className="text-red-600">Soluções</span></span>
+              <div className="flex justify-between items-center p-4 sm:p-6 border-b border-demoop-lightgreen">
+                <div className="flex items-center space-x-2 font-display font-bold text-lg sm:text-xl text-demoop-primary">
+                  <img 
+                    src="/lovable-uploads/dabf577d-abec-4c2f-aab4-f1a1c600dc29.png" 
+                    alt="Demoop Logo" 
+                    className="h-5 w-5 sm:h-6 sm:w-6" 
+                  />
+                  <span>Demoop <span className="text-demoop-blue">Limpeza</span></span>
                 </div>
-                <SheetClose className="p-2 rounded-full hover:bg-tech-lightgray/70 transition-all">
-                  <X className="text-orange-500" size={18} />
+                <SheetClose className="p-2 rounded-full hover:bg-demoop-lightgreen/70 transition-all">
+                  <X className="text-demoop-primary" size={18} />
                 </SheetClose>
               </div>
               <nav className="flex flex-col items-stretch justify-start flex-1 mt-4 sm:mt-8">
@@ -109,8 +117,8 @@ const NavBar = () => {
                     key={link.id}
                     href={`#${link.id}`}
                     className={cn(
-                      "text-orange-500 text-base sm:text-lg font-medium hover:bg-tech-lightgray/70 transition-all w-full text-center py-4 sm:py-6 px-4 flex items-center justify-center",
-                      "relative overflow-hidden after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-0 after:bg-red-600 after:transition-all after:duration-300 hover:after:w-1/3"
+                      "text-demoop-primary text-base sm:text-lg font-medium hover:bg-demoop-lightgreen/70 transition-all w-full text-center py-4 sm:py-6 px-4 flex items-center justify-center",
+                      "relative overflow-hidden after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-0 after:bg-demoop-blue after:transition-all after:duration-300 hover:after:w-1/3"
                     )}
                     style={{ animationDelay: `${index * 100}ms` }}
                     onClick={(e) => {
@@ -123,9 +131,9 @@ const NavBar = () => {
                   </a>
                 ))}
               </nav>
-              <div className="p-4 sm:p-6 border-t border-tech-lightgray mt-auto">
-                <div className="text-tech-gray text-xs sm:text-sm text-center">
-                  © 2024 TechHelp Soluções - Todos os direitos reservados
+              <div className="p-4 sm:p-6 border-t border-demoop-lightgreen mt-auto">
+                <div className="text-demoop-gray text-xs sm:text-sm text-center">
+                  © 2024 Demoop Limpeza - Todos os direitos reservados
                 </div>
               </div>
             </div>

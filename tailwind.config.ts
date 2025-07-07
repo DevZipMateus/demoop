@@ -62,15 +62,17 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				// Cores específicas da TechHelp - mudança de laranja para vermelho
-				tech: {
-					blue: 'hsl(215, 70%, 45%)',
-					darkblue: 'hsl(215, 80%, 35%)',
-					lightblue: 'hsl(215, 60%, 55%)',
-					gray: 'hsl(215, 20%, 60%)',
-					lightgray: 'hsl(210, 30%, 94%)',
-					orange: 'hsl(0, 84%, 60%)', // Mudado para vermelho
-					green: 'hsl(142, 70%, 45%)',
+				// Cores da Demoop baseadas na logo
+				demoop: {
+					primary: 'hsl(162, 52%, 48%)', // Verde da logo
+					blue: 'hsl(204, 100%, 56%)', // Azul da logo
+					green: 'hsl(162, 52%, 48%)', // Verde principal
+					lightgreen: 'hsl(162, 52%, 85%)', // Verde claro
+					darkgreen: 'hsl(162, 52%, 35%)', // Verde escuro
+					lightblue: 'hsl(204, 100%, 85%)', // Azul claro
+					darkblue: 'hsl(204, 100%, 45%)', // Azul escuro
+					gray: 'hsl(210, 15%, 60%)',
+					lightgray: 'hsl(210, 25%, 95%)',
 					white: '#FFFFFF',
 				},
 			},

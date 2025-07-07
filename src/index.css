@@ -7,34 +7,35 @@
 
 @layer base {
   :root {
-    /* Cores primárias - tons de azul e cinza */
-    --background: 215 25% 97%;
-    --foreground: 215 60% 15%;
+    /* Paleta Demoop - 60% Branco, 30% Verde, 10% Azul */
+    --background: 0 0% 100%;
+    --foreground: 162 52% 15%;
     --card: 0 0% 100%;
-    --card-foreground: 215 60% 15%;
+    --card-foreground: 162 52% 15%;
 
-    /* Cores secundárias */
-    --secondary: 210 30% 94%;
-    --secondary-foreground: 215 40% 30%;
-    --muted: 210 30% 94%;
-    --muted-foreground: 215 16% 46%;
-    --accent: 0 84% 60%;
+    /* Cores secundárias baseadas no verde da logo */
+    --secondary: 162 52% 95%;
+    --secondary-foreground: 162 52% 25%;
+    --muted: 162 25% 96%;
+    --muted-foreground: 162 15% 50%;
+    --accent: 204 100% 56%;
     --accent-foreground: 0 0% 100%;
     --popover: 0 0% 100%;
-    --popover-foreground: 215 60% 15%;
+    --popover-foreground: 162 52% 15%;
 
-    /* Cores de contraste */
-    --primary: 215 70% 45%;
+    /* Cores principais da Demoop */
+    --primary: 162 52% 48%;
     --primary-foreground: 0 0% 100%;
-    --tech-green: 142 70% 45%;
+    --demoop-blue: 204 100% 56%;
+    --demoop-green: 162 52% 48%;
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
     
-    --border: 214 32% 88%;
-    --input: 214 32% 88%;
-    --ring: 215 70% 45%;
+    --border: 162 25% 90%;
+    --input: 162 25% 92%;
+    --ring: 162 52% 48%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
   }
 
   html {
