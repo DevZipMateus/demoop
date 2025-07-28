@@ -49,8 +49,8 @@ const DemoopHero = () => {
 
       <div className="container mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 relative z-10 py-20 sm:py-24 lg:py-32">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
-          {/* Content Section - Left */}
-          <div className="text-center lg:text-left order-2 lg:order-1">
+          {/* Content Section - Primeiro no mobile, segundo no desktop */}
+          <div className="text-center lg:text-left order-1 lg:order-1">
             <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl font-light mb-3 sm:mb-4 lg:mb-6 opacity-0 animate-slide-up tracking-tight leading-tight">
               <span className="block text-demoop-primary">conheça</span>
               <span className="block text-demoop-blue">nossos produtos</span>
@@ -75,8 +75,8 @@ const DemoopHero = () => {
             </div>
           </div>
           
-          {/* Products Section - Right */}
-          <div className="grid grid-cols-1 gap-3 sm:gap-4 opacity-0 animate-slide-up animation-delay-600 order-1 lg:order-2">
+          {/* Products Section - Segundo no mobile, primeiro no desktop */}
+          <div className="grid grid-cols-1 gap-3 sm:gap-4 opacity-0 animate-slide-up animation-delay-600 order-2 lg:order-2">
             {products.map((product, index) => (
               <Card 
                 key={index}
