@@ -1,43 +1,26 @@
+
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const DemoopServices = () => {
   const services = [
     {
-      title: "Produtos Nacionais",
-      description: "Linha completa de produtos de limpeza de marcas nacionais reconhecidas pela qualidade e eficiência.",
-      icon: "🇧🇷",
+      title: "Produtos de Limpeza",
+      description: "Linha completa de produtos de limpeza de marcas nacionais e regionais reconhecidas pela qualidade e eficiência.",
+      icon: "🧴",
       color: "from-demoop-green to-demoop-darkgreen"
     },
     {
-      title: "Produtos Regionais", 
-      description: "Seleção especial de produtos regionais que atendem necessidades específicas da nossa região.",
-      icon: "🏪",
+      title: "Utensílios de Limpeza", 
+      description: "Panos, esponjas, vassouras e diversos utensílios para uma limpeza prática e eficiente.",
+      icon: "🧽",
       color: "from-demoop-blue to-demoop-darkblue"
     },
     {
-      title: "Utensílios de Limpeza",
-      description: "Panos, esponjas, vassouras e diversos utensílios para uma limpeza prática e eficiente.",
-      icon: "🧽",
+      title: "Produtos Automotivos",
+      description: "Produtos especializados para limpeza e cuidados automotivos, mantendo seu veículo sempre impecável.",
+      icon: "🚗",
       color: "from-demoop-green to-demoop-blue"
-    },
-    {
-      title: "Atendimento B2B",
-      description: "Fornecimento especializado para empresas com produtos em grandes quantidades e preços especiais.",
-      icon: "🏢",
-      color: "from-demoop-blue to-demoop-green"
-    },
-    {
-      title: "Varejo",
-      description: "Atendimento personalizado para pessoas físicas com produtos para limpeza doméstica.",
-      icon: "🏠",
-      color: "from-demoop-darkgreen to-demoop-green"
-    },
-    {
-      title: "Consultoria em Limpeza",
-      description: "Orientação especializada para escolher os melhores produtos conforme sua necessidade.",
-      icon: "💡",
-      color: "from-demoop-darkblue to-demoop-blue"
     }
   ];
 
@@ -45,7 +28,7 @@ const DemoopServices = () => {
     <section id="services" className="py-12 sm:py-16 lg:py-20 xl:py-24 px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 max-w-7xl mx-auto bg-white">
       <div className="text-center mb-12 sm:mb-16">
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light mb-4 text-demoop-primary tracking-tight leading-tight">
-          Nossos Serviços
+          Nossos Produtos
         </h2>
         <p className="text-base sm:text-lg lg:text-xl xl:text-2xl max-w-4xl mx-auto mb-8 sm:mb-12 text-muted-foreground font-light tracking-wide leading-relaxed">
           Soluções completas em produtos de limpeza para todos os segmentos
