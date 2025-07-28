@@ -78,21 +78,15 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				// Tech colors for the application
-				tech: {
-					green: 'hsl(var(--tech-green))',
-					blue: 'hsl(var(--tech-blue))',
-					accent: 'hsl(var(--tech-accent))',
-				},
-				// Demoop brand colors
+				// Cores da Demoop baseadas na logo
 				demoop: {
-					primary: 'hsl(162, 52%, 48%)',
-					blue: 'hsl(204, 100%, 56%)',
-					green: 'hsl(162, 52%, 48%)',
-					lightgreen: 'hsl(162, 52%, 85%)',
-					darkgreen: 'hsl(162, 52%, 35%)',
-					lightblue: 'hsl(204, 100%, 85%)',
-					darkblue: 'hsl(204, 100%, 45%)',
+					primary: 'hsl(162, 52%, 48%)', // Verde da logo
+					blue: 'hsl(204, 100%, 56%)', // Azul da logo
+					green: 'hsl(162, 52%, 48%)', // Verde principal
+					lightgreen: 'hsl(162, 52%, 85%)', // Verde claro
+					darkgreen: 'hsl(162, 52%, 35%)', // Verde escuro
+					lightblue: 'hsl(204, 100%, 85%)', // Azul claro
+					darkblue: 'hsl(204, 100%, 45%)', // Azul escuro
 					gray: 'hsl(210, 15%, 60%)',
 					lightgray: 'hsl(210, 25%, 95%)',
 					white: '#FFFFFF',
