@@ -40,7 +40,19 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 4rem;
+    scroll-padding-top: 3rem;
+  }
+
+  @media (min-width: 640px) {
+    html {
+      scroll-padding-top: 4rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    html {
+      scroll-padding-top: 5rem;
+    }
   }
 
   body {
@@ -53,7 +65,31 @@
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-weight: 400;
     letter-spacing: -0.01em;
-    font-size: 16px;
+    font-size: 14px;
+  }
+
+  @media (min-width: 640px) {
+    body {
+      font-size: 16px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    body {
+      font-size: 16px;
+    }
+  }
+
+  @media (min-width: 1920px) {
+    body {
+      font-size: 18px;
+    }
+  }
+
+  @media (min-width: 2560px) {
+    body {
+      font-size: 20px;
+    }
   }
 
   /* Enhanced parallax effect with better performance */
@@ -77,42 +113,26 @@
     .parallax-bg {
       background-attachment: scroll;
     }
-    
-    body {
-      font-size: 14px;
-    }
-  }
-
-  @media (min-width: 1920px) {
-    body {
-      font-size: 18px;
-    }
-  }
-
-  @media (min-width: 2560px) {
-    body {
-      font-size: 20px;
-    }
   }
 }
 
 @layer components {
   .section-container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 py-12 sm:py-16 lg:py-20 xl:py-24;
+    @apply max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 py-8 sm:py-12 lg:py-16 xl:py-20;
   }
   
   .section-title {
-    @apply text-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light mb-4 opacity-0 animate-slide-up tracking-tight leading-tight;
+    @apply text-foreground text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-light mb-3 sm:mb-4 opacity-0 animate-slide-up tracking-tight leading-tight;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
   
   .section-subtitle {
-    @apply text-secondary-foreground text-base sm:text-lg lg:text-xl xl:text-2xl max-w-4xl mx-auto mb-8 sm:mb-12 opacity-0 animate-slide-up animation-delay-200 font-light tracking-wide leading-relaxed;
+    @apply text-secondary-foreground text-sm sm:text-base lg:text-lg xl:text-xl max-w-4xl mx-auto mb-6 sm:mb-8 lg:mb-12 opacity-0 animate-slide-up animation-delay-200 font-light tracking-wide leading-relaxed;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
   
   .hero-title {
-    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-light mb-4 sm:mb-6 opacity-0 animate-slide-up tracking-tight leading-tight;
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light mb-3 sm:mb-4 lg:mb-6 opacity-0 animate-slide-up tracking-tight leading-tight;
     background: linear-gradient(135deg, hsl(215, 70%, 45%) 0%, hsl(0, 84%, 60%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -121,7 +141,7 @@
   }
   
   .card-shadow {
-    @apply shadow-[0px_4px_20px_rgba(0,0,0,0.04)] sm:shadow-[0px_8px_30px_rgba(0,0,0,0.08)];
+    @apply shadow-[0px_2px_10px_rgba(0,0,0,0.04)] sm:shadow-[0px_4px_20px_rgba(0,0,0,0.06)] lg:shadow-[0px_8px_30px_rgba(0,0,0,0.08)];
   }
   
   .parallax-bg {
@@ -190,11 +210,66 @@
   }
   
   .service-card {
-    @apply bg-white/70 backdrop-blur-md rounded-xl p-4 sm:p-6 shadow-[0px_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300 hover:shadow-[0px_8px_30px_rgba(0,0,0,0.12)] hover:translate-y-[-4px] sm:hover:translate-y-[-8px] border border-white/20;
+    @apply bg-white/70 backdrop-blur-md rounded-lg sm:rounded-xl p-3 sm:p-4 lg:p-6 shadow-[0px_2px_10px_rgba(0,0,0,0.06)] sm:shadow-[0px_4px_20px_rgba(0,0,0,0.08)] transition-all duration-300 hover:shadow-[0px_6px_25px_rgba(0,0,0,0.12)] hover:translate-y-[-2px] sm:hover:translate-y-[-4px] border border-white/20;
   }
   
   .tech-overlay {
     background: linear-gradient(135deg, rgba(59, 130, 246, 0.9) 0%, rgba(29, 78, 216, 0.85) 50%, rgba(220, 38, 127, 0.9) 100%);
+  }
+
+  /* Responsive grid utilities */
+  .grid-responsive {
+    @apply grid grid-cols-1 gap-3 sm:gap-4 lg:gap-6;
+  }
+
+  .grid-responsive-2 {
+    @apply grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 lg:gap-6;
+  }
+
+  .grid-responsive-3 {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6;
+  }
+
+  .grid-responsive-4 {
+    @apply grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6;
+  }
+
+  /* Responsive spacing utilities */
+  .spacing-responsive {
+    @apply space-y-3 sm:space-y-4 lg:space-y-6;
+  }
+
+  .padding-responsive {
+    @apply p-3 sm:p-4 lg:p-6;
+  }
+
+  .padding-section {
+    @apply py-8 sm:py-12 lg:py-16 xl:py-20 px-3 sm:px-4 lg:px-6 xl:px-8;
+  }
+
+  /* Responsive text utilities */
+  .text-responsive-sm {
+    @apply text-xs sm:text-sm lg:text-base;
+  }
+
+  .text-responsive-base {
+    @apply text-sm sm:text-base lg:text-lg;
+  }
+
+  .text-responsive-lg {
+    @apply text-base sm:text-lg lg:text-xl;
+  }
+
+  .text-responsive-xl {
+    @apply text-lg sm:text-xl lg:text-2xl;
+  }
+
+  .text-responsive-2xl {
+    @apply text-xl sm:text-2xl lg:text-3xl;
+  }
+
+  .text-responsive-3xl {
+    @apply text-2xl sm:text-3xl lg:text-4xl;
   }
 
   /* Parallax depth layers */
@@ -259,7 +334,11 @@
     }
     
     .animate-float {
-      transform: none !important;
+      animation: none !important;
+    }
+    
+    .hover\:scale-105:hover {
+      transform: scale(1.02) !important;
     }
   }
 
@@ -282,6 +361,14 @@
   @media (min-width: 2560px) {
     .section-container {
       @apply max-w-9xl;
+    }
+  }
+
+  /* Better touch targets for mobile */
+  @media (max-width: 640px) {
+    button, a {
+      min-height: 44px;
+      min-width: 44px;
     }
   }
 }
