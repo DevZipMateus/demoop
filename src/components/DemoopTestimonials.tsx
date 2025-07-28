@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
+
 const DemoopTestimonials = () => {
   const testimonials = [{
     name: "Valdete",
@@ -14,6 +15,7 @@ const DemoopTestimonials = () => {
     text: "Melhores panos para limpeza você encontra aqui!",
     rating: 5
   }];
+
   const renderStars = (rating: number) => {
     return Array.from({
       length: 5
@@ -21,6 +23,7 @@ const DemoopTestimonials = () => {
         ★
       </span>);
   };
+
   return <section id="testimonials" className="py-12 sm:py-16 lg:py-20 xl:py-24 px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 max-w-7xl mx-auto bg-gradient-to-br from-demoop-lightblue/20 to-demoop-lightgreen/20">
       <div className="text-center mb-12 sm:mb-16">
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light mb-4 text-demoop-primary tracking-tight leading-tight">
@@ -61,22 +64,22 @@ const DemoopTestimonials = () => {
           <h3 className="text-xl sm:text-2xl font-semibold text-demoop-primary mb-3 sm:mb-4">
             Seja nosso próximo cliente satisfeito!
           </h3>
-          <p className="text-muted-foreground text-base sm:text-lg mb-4 sm:mb-6">
+          <p className="text-muted-foreground text-base sm:text-lg mb-6 sm:mb-8">
             Junte-se às centenas de clientes que já confiam na qualidade dos nossos produtos.
           </p>
-          <div className="grid grid-cols-3 gap-4 sm:gap-8 text-center">
-            <div>
-              <div className="text-2xl sm:text-3xl font-bold text-demoop-green">10</div>
-              <div className="text-xs sm:text-sm text-muted-foreground">Anos de experiência</div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-12 text-center max-w-2xl mx-auto">
+            <div className="flex flex-col items-center">
+              <div className="text-3xl sm:text-4xl font-bold text-demoop-green mb-2">10</div>
+              <div className="text-sm sm:text-base text-muted-foreground">Anos de experiência</div>
             </div>
-            <div>
-              <div className="text-2xl sm:text-3xl font-bold text-demoop-blue">100%</div>
-              <div className="text-xs sm:text-sm text-muted-foreground">Clientes satisfeitos</div>
+            <div className="flex flex-col items-center">
+              <div className="text-3xl sm:text-4xl font-bold text-demoop-blue mb-2">100%</div>
+              <div className="text-sm sm:text-base text-muted-foreground">Clientes satisfeitos</div>
             </div>
-            
           </div>
         </div>
       </div>
     </section>;
 };
+
 export default DemoopTestimonials;
