@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -39,7 +38,7 @@ const DemoopHero = () => {
   ];
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-white via-demoop-lightgreen/20 to-demoop-lightblue/20 pt-24 sm:pt-28 lg:pt-32">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-white via-demoop-lightgreen/20 to-demoop-lightblue/20 pt-28 sm:pt-32 lg:pt-36">
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-10 left-2 sm:left-4 w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-demoop-green/10 rounded-full blur-3xl animate-float"></div>
