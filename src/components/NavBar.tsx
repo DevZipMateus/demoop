@@ -63,8 +63,8 @@ const NavBar = () => {
               alt="Demoop Logo" 
               className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12" 
             />
-            <span className="hidden sm:inline text-demoop-primary">Demoop <span className="text-demoop-blue">Limpeza</span></span>
-            <span className="sm:hidden text-demoop-primary">Demoop</span>
+            <span className="hidden sm:inline text-demoop-blue">Demoop Limpeza</span>
+            <span className="sm:hidden text-demoop-blue">Demoop</span>
           </a>
         </div>
 
@@ -99,13 +99,13 @@ const NavBar = () => {
           <SheetContent side="right" className="w-[90%] sm:w-[85%] p-0 bg-gradient-to-br from-white to-demoop-lightgreen border-l-4 border-demoop-blue">
             <div className="flex flex-col h-full">
               <div className="flex justify-between items-center p-4 sm:p-6 border-b border-demoop-lightgreen">
-                <div className="flex items-center space-x-2 font-display font-bold text-lg sm:text-xl text-demoop-primary">
+                <div className="flex items-center space-x-2 font-display font-bold text-lg sm:text-xl text-demoop-blue">
                   <img 
                     src="/lovable-uploads/dabf577d-abec-4c2f-aab4-f1a1c600dc29.png" 
                     alt="Demoop Logo" 
                     className="h-5 w-5 sm:h-6 sm:w-6" 
                   />
-                  <span>Demoop <span className="text-demoop-blue">Limpeza</span></span>
+                  <span>Demoop Limpeza</span>
                 </div>
                 <SheetClose className="p-2 rounded-full hover:bg-demoop-lightgreen/70 transition-all">
                   <X className="text-demoop-primary" size={18} />
