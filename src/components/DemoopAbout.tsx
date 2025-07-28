@@ -9,7 +9,7 @@ const DemoopAbout = () => {
           Sobre a Demoop
         </h2>
         <p className="text-base sm:text-lg lg:text-xl xl:text-2xl max-w-4xl mx-auto mb-8 sm:mb-12 text-muted-foreground font-light tracking-wide leading-relaxed">
-          9 anos transformando a limpeza com qualidade e excelência
+          10 anos transformando a limpeza com qualidade e excelência
         </p>
       </div>
 
@@ -18,7 +18,7 @@ const DemoopAbout = () => {
           <div className="prose prose-lg max-w-none">
             <p className="text-foreground/90 text-base sm:text-lg leading-relaxed mb-4 sm:mb-6">
               Somos uma loja que revende vários produtos de limpeza tanto nacionais quanto regionais. 
-              Trabalhamos há 9 anos nesse mercado oferecendo produtos e utensílios para limpeza prática e eficiente.
+              Trabalhamos há 10 anos nesse mercado oferecendo produtos e utensílios para limpeza prática e eficiente.
             </p>
             <p className="text-foreground/80 text-sm sm:text-base leading-relaxed">
               Atendemos no varejo, empresas e pessoas físicas, sempre buscando oferecer a melhor 
@@ -61,10 +61,10 @@ const DemoopAbout = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         <div className="text-center p-4 sm:p-6 bg-white/60 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg border border-demoop-green/20 hover:shadow-xl transition-all duration-300">
           <div className="w-14 h-14 sm:w-16 sm:h-16 bg-demoop-green rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-            <span className="text-2xl sm:text-3xl font-bold text-white">9</span>
+            <span className="text-2xl sm:text-3xl font-bold text-white">10</span>
           </div>
           <h3 className="text-lg sm:text-xl font-semibold text-demoop-primary mb-2">Anos de Experiência</h3>
-          <p className="text-muted-foreground text-sm sm:text-base">Desde 2015 oferecendo produtos de qualidade</p>
+          <p className="text-muted-foreground text-sm sm:text-base">Desde 2014 oferecendo produtos de qualidade</p>
         </div>
 
         <div className="text-center p-4 sm:p-6 bg-white/60 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg border border-demoop-blue/20 hover:shadow-xl transition-all duration-300">

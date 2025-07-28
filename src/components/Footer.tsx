@@ -18,7 +18,7 @@ const Footer = () => {
               <span className="text-slate-50">Demoop</span>
             </h3>
             <p className="text-white/80 mb-4 max-w-sm">
-              9 anos oferecendo produtos e utensílios de limpeza nacionais e regionais. Atendemos varejo, empresas e pessoas físicas com qualidade e eficiência.
+              10 anos oferecendo produtos e utensílios de limpeza nacionais e regionais. Atendemos varejo, empresas e pessoas físicas com qualidade e eficiência.
             </p>
             <div className="flex space-x-4 mt-4">
               <a href="https://www.facebook.com/demoop" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors duration-300">

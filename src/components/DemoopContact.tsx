@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -221,7 +222,7 @@ Mensagem: ${formData.message}`;
               </p>
               <div className="grid grid-cols-2 gap-3 sm:gap-4">
                 <div className="text-center">
-                  <div className="text-xl sm:text-2xl font-bold text-demoop-green">9 anos</div>
+                  <div className="text-xl sm:text-2xl font-bold text-demoop-green">10 anos</div>
                   <div className="text-xs sm:text-sm text-muted-foreground">de experiência</div>
                 </div>
                 <div className="text-center">

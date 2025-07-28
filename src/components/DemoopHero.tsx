@@ -36,7 +36,7 @@ const DemoopHero = () => {
             </p>
             
             <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-8 sm:mb-10 opacity-0 animate-slide-up animation-delay-300 max-w-xl lg:max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              9 anos oferecendo produtos e utensílios de limpeza nacionais e regionais. 
+              10 anos oferecendo produtos e utensílios de limpeza nacionais e regionais. 
               Atendemos varejo, empresas e pessoas físicas com qualidade e eficiência.
             </p>
             

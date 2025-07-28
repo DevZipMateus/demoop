@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 
@@ -84,7 +85,7 @@ const DemoopTestimonials = () => {
           </p>
           <div className="grid grid-cols-3 gap-4 sm:gap-8 text-center">
             <div>
-              <div className="text-2xl sm:text-3xl font-bold text-demoop-green">9</div>
+              <div className="text-2xl sm:text-3xl font-bold text-demoop-green">10</div>
               <div className="text-xs sm:text-sm text-muted-foreground">Anos de experiência</div>
             </div>
             <div>
