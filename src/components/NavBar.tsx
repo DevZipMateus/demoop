@@ -31,9 +31,8 @@ const NavBar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Início', id: 'home' },
-    { name: 'Sobre', id: 'about' },
-    { name: 'Serviços', id: 'services' },
+    { name: 'Home', id: 'home' },
+    { name: 'Produtos', id: 'services' },
     { name: 'Depoimentos', id: 'testimonials' },
     { name: 'Localização', id: 'location' },
     { name: 'Contato', id: 'contact' },
