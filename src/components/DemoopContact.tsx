@@ -226,8 +226,8 @@ Mensagem: ${formData.message}`;
                   <div className="text-xs sm:text-sm text-muted-foreground">de experiência</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-xl sm:text-2xl font-bold text-demoop-blue">24h</div>
-                  <div className="text-xs sm:text-sm text-muted-foreground">resposta WhatsApp</div>
+                  <div className="text-xl sm:text-2xl font-bold text-demoop-blue">Resposta rápida</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">pelo WhatsApp</div>
                 </div>
               </div>
             </CardContent>
