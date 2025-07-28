@@ -23,10 +23,10 @@ const PerformanceOptimizer = () => {
 
     // Optimize images loading
     const optimizeImages = () => {
-      const images = document.querySelectorAll('img');
+      const images = document.querySelectorAll('img[loading!="lazy"]');
       images.forEach(img => {
-        img.loading = 'lazy';
-        img.decoding = 'async';
+        (img as HTMLImageElement).loading = 'lazy';
+        (img as HTMLImageElement).decoding = 'async';
       });
     };
 
@@ -34,8 +34,8 @@ const PerformanceOptimizer = () => {
     preloadCriticalResources();
     optimizeImages();
 
-    // Monitor performance
-    if (metrics && !isLoading) {
+    // Monitor performance only in development
+    if (process.env.NODE_ENV === 'development' && metrics && !isLoading) {
       console.log('Performance optimization applied');
       
       // Warn about slow loading

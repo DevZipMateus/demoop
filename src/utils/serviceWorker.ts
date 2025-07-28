@@ -1,11 +1,13 @@
 
 // Service Worker registration utility
 export const registerServiceWorker = async (): Promise<void> => {
-  if ('serviceWorker' in navigator) {
+  if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
     try {
       const registration = await navigator.serviceWorker.register('/sw.js');
       
-      console.log('Service Worker registered successfully:', registration);
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Service Worker registered successfully:', registration);
+      }
       
       // Handle updates
       registration.addEventListener('updatefound', () => {
@@ -24,7 +26,9 @@ export const registerServiceWorker = async (): Promise<void> => {
       });
       
     } catch (error) {
-      console.error('Service Worker registration failed:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Service Worker registration failed:', error);
+      }
     }
   }
 };
@@ -34,9 +38,13 @@ export const unregisterServiceWorker = async (): Promise<void> => {
     try {
       const registrations = await navigator.serviceWorker.getRegistrations();
       await Promise.all(registrations.map(registration => registration.unregister()));
-      console.log('Service Worker unregistered successfully');
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Service Worker unregistered successfully');
+      }
     } catch (error) {
-      console.error('Service Worker unregistration failed:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Service Worker unregistration failed:', error);
+      }
     }
   }
 };

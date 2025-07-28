@@ -72,9 +72,8 @@ const Hero = () => {
             ASSISTÊNCIA TÉCNICA
             <br />
             <span 
-              className="font-black"
+              className="font-black text-red-600"
               style={{
-                color: '#dc2626',
                 textShadow: '0 4px 40px rgba(220, 38, 38, 0.8)'
               }}
             >
