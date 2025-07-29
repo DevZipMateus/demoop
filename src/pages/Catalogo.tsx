@@ -47,10 +47,10 @@ const Catalogo = () => {
                 
                 <div className="p-3 sm:p-4 text-center">
                   <div className="text-lg sm:text-xl lg:text-2xl font-bold text-demoop-blue mb-2">
-                    R$ {product.price}
+                    R$ {product.price.replace(' - 2', '')}
                   </div>
                   <button
-                    onClick={() => handleWhatsAppClick(product.price)}
+                    onClick={() => handleWhatsAppClick(product.price.replace(' - 2', ''))}
                     className="w-full bg-demoop-primary hover:bg-demoop-darkgreen text-white py-2 px-3 rounded-lg text-sm font-medium transition-all duration-300 hover:shadow-md"
                   >
                     Consultar
