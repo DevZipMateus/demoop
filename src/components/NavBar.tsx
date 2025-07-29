@@ -46,6 +46,13 @@ const NavBar = () => {
     if (link.isRoute) {
       // Para rotas, sempre navegar
       navigate(link.route);
+      
+      // Se for Home, garantir que vá para o topo da página
+      if (link.route === '/') {
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 100);
+      }
     } else {
       // Para seções, verificar se estamos na página principal
       if (location.pathname !== '/') {
@@ -62,6 +69,10 @@ const NavBar = () => {
 
   const handleLogoClick = () => {
     navigate('/');
+    // Garantir que vá para o topo quando clicar no logo
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
   };
 
   return (
