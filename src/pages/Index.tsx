@@ -13,7 +13,15 @@ import ClickSpark from '@/components/ClickSpark';
 import { useParallax } from '@/hooks/useParallax';
 
 const Index = () => {
-  const { getParallaxStyle } = useParallax();
+  // Add safety check for the parallax hook
+  let getParallaxStyle;
+  try {
+    const parallax = useParallax();
+    getParallaxStyle = parallax.getParallaxStyle;
+  } catch (error) {
+    console.warn('Parallax hook failed, using fallback:', error);
+    getParallaxStyle = () => ({ transform: 'translateY(0px)' });
+  }
 
   useEffect(() => {
     // Ensure smooth scroll behavior works properly
