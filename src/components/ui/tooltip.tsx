@@ -2,24 +2,16 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
 
-// Simple fallback tooltip components
-const FallbackTooltipProvider = ({ 
-  children,
-  delayDuration,
-  ...props 
-}: { 
-  children: React.ReactNode;
-  delayDuration?: number;
-  [key: string]: any;
-}) => {
-  return <div {...props}>{children}</div>;
+// Completely custom tooltip implementation without any Radix UI dependency
+const TooltipProvider = ({ children, ...props }: { children: React.ReactNode; [key: string]: any }) => {
+  return <>{children}</>;
 };
 
-const FallbackTooltip = ({ children, ...props }: { children: React.ReactNode; [key: string]: any }) => {
-  return <div {...props}>{children}</div>;
+const Tooltip = ({ children, ...props }: { children: React.ReactNode; [key: string]: any }) => {
+  return <>{children}</>;
 };
 
-const FallbackTooltipTrigger = React.forwardRef<
+const TooltipTrigger = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & { asChild?: boolean }
 >(({ children, asChild, className, ...props }, ref) => (
@@ -27,9 +19,9 @@ const FallbackTooltipTrigger = React.forwardRef<
     {children}
   </div>
 ));
-FallbackTooltipTrigger.displayName = "FallbackTooltipTrigger";
+TooltipTrigger.displayName = "TooltipTrigger";
 
-const FallbackTooltipContent = React.forwardRef<
+const TooltipContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & { 
     sideOffset?: number;
@@ -40,7 +32,7 @@ const FallbackTooltipContent = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "z-50 overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md opacity-0 pointer-events-none",
+      "hidden", // Hide tooltip content by default since we're not implementing hover logic
       className
     )}
     {...props}
@@ -48,10 +40,6 @@ const FallbackTooltipContent = React.forwardRef<
     {children}
   </div>
 ));
-FallbackTooltipContent.displayName = "FallbackTooltipContent";
+TooltipContent.displayName = "TooltipContent";
 
-// Initialize with fallback components by default
-export const TooltipProvider = FallbackTooltipProvider;
-export const Tooltip = FallbackTooltip;
-export const TooltipTrigger = FallbackTooltipTrigger;
-export const TooltipContent = FallbackTooltipContent;
+export { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent };

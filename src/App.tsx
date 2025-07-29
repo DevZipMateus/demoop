@@ -8,9 +8,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
+console.log("App.tsx: Starting to render App component");
+
 const queryClient = new QueryClient();
 
 const App = () => {
+  console.log("App.tsx: Inside App component render");
+  
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -26,5 +30,7 @@ const App = () => {
     </QueryClientProvider>
   );
 };
+
+console.log("App.tsx: App component defined");
 
 export default App;
