@@ -1,5 +1,5 @@
-
 import * as React from "react"
+import { Slot } from "@radix-ui/react-slot"
 import { cn } from "@/lib/utils"
 
 interface TooltipContextType {
@@ -54,9 +54,12 @@ Tooltip.displayName = "Tooltip"
 
 const TooltipTrigger = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ children, onMouseEnter, onMouseLeave, onFocus, onBlur, ...props }, ref) => {
+  React.HTMLAttributes<HTMLDivElement> & {
+    asChild?: boolean
+  }
+>(({ children, asChild = false, onMouseEnter, onMouseLeave, onFocus, onBlur, ...props }, ref) => {
   const context = React.useContext(TooltipContext)
+  const Comp = asChild ? Slot : "div"
   
   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
     context?.setOpen(true)
@@ -79,7 +82,7 @@ const TooltipTrigger = React.forwardRef<
   }
 
   return (
-    <div
+    <Comp
       ref={ref}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -88,7 +91,7 @@ const TooltipTrigger = React.forwardRef<
       {...props}
     >
       {children}
-    </div>
+    </Comp>
   )
 })
 TooltipTrigger.displayName = "TooltipTrigger"
