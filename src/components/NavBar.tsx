@@ -31,9 +31,8 @@ const NavBar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Início', id: 'home' },
-    { name: 'Sobre', id: 'about' },
-    { name: 'Serviços', id: 'services' },
+    { name: 'Home', id: 'home' },
+    { name: 'Produtos', id: 'services' },
     { name: 'Depoimentos', id: 'testimonials' },
     { name: 'Localização', id: 'location' },
     { name: 'Contato', id: 'contact' },
@@ -44,15 +43,15 @@ const NavBar = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out",
         scrolled 
-          ? "py-2 sm:py-3 bg-white/95 backdrop-blur-md shadow-lg" 
-          : "py-3 sm:py-4 bg-transparent"
+          ? "py-1 sm:py-2 bg-white/95 backdrop-blur-md shadow-lg" 
+          : "py-2 sm:py-3 bg-transparent"
       )}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 flex justify-between items-center">
+      <div className="container mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 flex justify-between items-center">
         <div className="flex items-center">
           <a 
             href="#home" 
-            className="flex items-center space-x-2 font-display font-bold text-lg sm:text-xl lg:text-2xl"
+            className="flex items-center space-x-1 sm:space-x-2 font-display font-bold text-base sm:text-lg lg:text-xl"
             onClick={(e) => {
               e.preventDefault();
               scrollToSection('home');
@@ -61,20 +60,19 @@ const NavBar = () => {
             <img 
               src="/lovable-uploads/dabf577d-abec-4c2f-aab4-f1a1c600dc29.png" 
               alt="Demoop Logo" 
-              className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12" 
+              className="h-6 w-6 sm:h-8 sm:w-8 lg:h-10 lg:w-10" 
             />
-            <span className="hidden sm:inline text-demoop-blue">Demoop Limpeza</span>
-            <span className="sm:hidden text-demoop-blue">Demoop</span>
+            <span className="hidden xs:inline text-demoop-blue text-sm sm:text-base lg:text-lg">Demoop</span>
           </a>
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex space-x-6 xl:space-x-8">
+        <nav className="hidden md:flex space-x-4 lg:space-x-6">
           {navLinks.map((link) => (
             <a
               key={link.id}
               href={`#${link.id}`}
-              className="text-demoop-primary hover:text-demoop-blue transition-colors duration-300 text-sm xl:text-base font-medium relative group"
+              className="text-demoop-primary hover:text-demoop-blue transition-colors duration-300 text-sm lg:text-base font-medium relative group"
               onClick={(e) => {
                 e.preventDefault();
                 scrollToSection(link.id);
@@ -86,39 +84,39 @@ const NavBar = () => {
           ))}
         </nav>
 
-        {/* Mobile Navigation with Sheet component */}
+        {/* Mobile Navigation */}
         <Sheet>
           <SheetTrigger asChild>
             <button 
-              className="lg:hidden text-demoop-primary p-2 rounded-md hover:bg-demoop-lightgreen/50 transition-colors" 
+              className="md:hidden text-demoop-primary p-1 sm:p-2 rounded-md hover:bg-demoop-lightgreen/50 transition-colors" 
               aria-label="Open menu"
             >
-              <Menu size={20} className="sm:w-6 sm:h-6" />
+              <Menu size={18} className="sm:w-5 sm:h-5" />
             </button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-[90%] sm:w-[85%] p-0 bg-gradient-to-br from-white to-demoop-lightgreen border-l-4 border-demoop-blue">
+          <SheetContent side="right" className="w-[85%] sm:w-[80%] p-0 bg-gradient-to-br from-white to-demoop-lightgreen border-l-4 border-demoop-blue">
             <div className="flex flex-col h-full">
-              <div className="flex justify-between items-center p-4 sm:p-6 border-b border-demoop-lightgreen">
-                <div className="flex items-center space-x-2 font-display font-bold text-lg sm:text-xl text-demoop-blue">
+              <div className="flex justify-between items-center p-3 sm:p-4 border-b border-demoop-lightgreen">
+                <div className="flex items-center space-x-2 font-display font-bold text-base sm:text-lg text-demoop-blue">
                   <img 
                     src="/lovable-uploads/dabf577d-abec-4c2f-aab4-f1a1c600dc29.png" 
                     alt="Demoop Logo" 
                     className="h-5 w-5 sm:h-6 sm:w-6" 
                   />
-                  <span>Demoop Limpeza</span>
+                  <span>Demoop</span>
                 </div>
                 <SheetClose className="p-2 rounded-full hover:bg-demoop-lightgreen/70 transition-all">
-                  <X className="text-demoop-primary" size={18} />
+                  <X className="text-demoop-primary" size={16} />
                 </SheetClose>
               </div>
-              <nav className="flex flex-col items-stretch justify-start flex-1 mt-4 sm:mt-8">
+              <nav className="flex flex-col items-stretch justify-start flex-1 mt-2 sm:mt-4">
                 {navLinks.map((link, index) => (
                   <a
                     key={link.id}
                     href={`#${link.id}`}
                     className={cn(
-                      "text-demoop-primary text-base sm:text-lg font-medium hover:bg-demoop-lightgreen/70 transition-all w-full text-center py-4 sm:py-6 px-4 flex items-center justify-center",
-                      "relative overflow-hidden after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-0 after:bg-demoop-blue after:transition-all after:duration-300 hover:after:w-1/3"
+                      "text-demoop-primary text-sm sm:text-base font-medium hover:bg-demoop-lightgreen/70 transition-all w-full text-center py-3 sm:py-4 px-3 flex items-center justify-center",
+                      "relative overflow-hidden after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-demoop-blue after:transition-all after:duration-300 hover:after:w-1/3"
                     )}
                     style={{ animationDelay: `${index * 100}ms` }}
                     onClick={(e) => {
@@ -131,9 +129,9 @@ const NavBar = () => {
                   </a>
                 ))}
               </nav>
-              <div className="p-4 sm:p-6 border-t border-demoop-lightgreen mt-auto">
-                <div className="text-demoop-gray text-xs sm:text-sm text-center">
-                  © 2024 Demoop Limpeza - Todos os direitos reservados
+              <div className="p-3 sm:p-4 border-t border-demoop-lightgreen mt-auto">
+                <div className="text-demoop-gray text-xs text-center">
+                  © 2024 Demoop Limpeza
                 </div>
               </div>
             </div>
