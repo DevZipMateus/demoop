@@ -18,6 +18,12 @@ if (!React.useState || typeof React.useState !== 'function') {
   throw new Error("React hooks are not available");
 }
 
+// Additional check to ensure React is fully initialized
+if (!React.Component || !React.createElement) {
+  console.error("React core functionality is not available");
+  throw new Error("React core functionality is not available");
+}
+
 const container = document.getElementById("root");
 if (!container) {
   throw new Error("Root element not found");
@@ -30,15 +36,20 @@ try {
   const root = createRoot(container);
   console.log("main.tsx: Root created, about to render App");
   
-  root.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  );
-  console.log("main.tsx: App rendered");
+  // Add a small delay to ensure React is fully initialized
+  setTimeout(() => {
+    root.render(
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    );
+    console.log("main.tsx: App rendered");
+  }, 0);
 } catch (error) {
   console.error("Error during root creation or rendering:", error);
-  // Fallback rendering without StrictMode
+  // Fallback rendering without StrictMode and delay
   const root = createRoot(container);
-  root.render(<App />);
+  setTimeout(() => {
+    root.render(<App />);
+  }, 100);
 }
