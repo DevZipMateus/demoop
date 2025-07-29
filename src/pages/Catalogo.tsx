@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Package } from 'lucide-react';
 import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
@@ -88,7 +89,10 @@ const Catalogo = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-10">
                   <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-demoop-green/20">
-                    <div className="text-2xl sm:text-3xl mb-2">500+</div>
+                    <div className="flex items-center justify-center mb-3">
+                      <Package className="w-8 h-8 sm:w-10 sm:h-10 text-demoop-primary" />
+                    </div>
+                    <div className="text-2xl sm:text-3xl mb-2 font-bold text-demoop-blue">500+</div>
                     <div className="text-sm sm:text-base text-muted-foreground">Produtos disponíveis</div>
                   </div>
                   <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-demoop-green/20">
