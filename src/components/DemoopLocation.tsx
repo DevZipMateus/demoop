@@ -134,11 +134,11 @@ const DemoopLocation = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-2xl mx-auto">
             <div className="text-center">
               <h4 className="font-semibold text-demoop-blue mb-2 text-sm sm:text-base">Segunda a Sexta</h4>
-              <p className="text-muted-foreground text-sm sm:text-base">08:30 as 12:00 - 13:30 as 18:00</p>
+              <p className="text-muted-foreground text-sm sm:text-base">08:00 às 18:00</p>
             </div>
             <div className="text-center">
               <h4 className="font-semibold text-demoop-green mb-2 text-sm sm:text-base">Sábados</h4>
-              <p className="text-muted-foreground text-sm sm:text-base">08:30 às 12:00</p>
+              <p className="text-muted-foreground text-sm sm:text-base">08:00 às 12:00</p>
             </div>
           </div>
           <p className="text-xs sm:text-sm text-muted-foreground mt-3 sm:mt-4">
