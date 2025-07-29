@@ -91,8 +91,6 @@ export const reducer = (state: State, action: Action): State => {
     case "DISMISS_TOAST": {
       const { toastId } = action
 
-      // ! Side effects ! - This could be extracted into a dismissToast() action,
-      // but I'll keep it here for simplicity
       if (toastId) {
         addToRemoveQueue(toastId)
       } else {
@@ -170,18 +168,6 @@ function toast({ ...props }: Toast) {
 }
 
 function useToast() {
-  console.log("useToast hook called");
-  
-  // Add safety check for React
-  if (!React || !React.useState) {
-    console.error("React or React.useState is not available");
-    return {
-      toasts: [],
-      toast: () => ({ id: "", dismiss: () => {}, update: () => {} }),
-      dismiss: () => {},
-    };
-  }
-
   const [state, setState] = React.useState<State>(memoryState)
 
   React.useEffect(() => {

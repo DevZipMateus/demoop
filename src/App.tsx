@@ -11,9 +11,6 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => {
-  console.log("App component rendering");
-  console.log("React in App:", { React: !!React, useState: !!React?.useState });
-  
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -22,7 +19,6 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
