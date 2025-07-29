@@ -1,5 +1,4 @@
-
-import { useState, useEffect } from "react"
+import * as React from "react"
 
 import type {
   ToastActionElement,
@@ -170,43 +169,17 @@ function toast({ ...props }: Toast) {
 }
 
 function useToast() {
-  // Fallback check for React hooks functionality
-  let state, setState;
-  
-  try {
-    [state, setState] = useState<State>(memoryState);
-    
-    // Verify the hook returned valid values
-    if (!setState || typeof setState !== 'function') {
-      console.error('useState hook returned invalid values');
-      // Return a fallback implementation
-      return {
-        toasts: [],
-        toast: () => ({ id: 'fallback', dismiss: () => {}, update: () => {} }),
-        dismiss: () => {},
-      };
-    }
-  } catch (error) {
-    console.error('useState hook failed:', error);
-    // Return fallback implementation
-    return {
-      toasts: [],
-      toast: () => ({ id: 'fallback', dismiss: () => {}, update: () => {} }),
-      dismiss: () => {},
-    };
-  }
+  const [state, setState] = React.useState<State>(memoryState)
 
-  useEffect(() => {
-    if (setState && typeof setState === 'function') {
-      listeners.push(setState)
-      return () => {
-        const index = listeners.indexOf(setState)
-        if (index > -1) {
-          listeners.splice(index, 1)
-        }
+  React.useEffect(() => {
+    listeners.push(setState)
+    return () => {
+      const index = listeners.indexOf(setState)
+      if (index > -1) {
+        listeners.splice(index, 1)
       }
     }
-  }, [setState])
+  }, [state])
 
   return {
     ...state,

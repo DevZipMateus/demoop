@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -38,7 +39,7 @@ const DemoopHero = () => {
   ];
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-white via-demoop-lightgreen/20 to-demoop-lightblue/20 pt-28 sm:pt-32 lg:pt-36">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-white via-demoop-lightgreen/20 to-demoop-lightblue/20">
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-10 left-2 sm:left-4 w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-demoop-green/10 rounded-full blur-3xl animate-float"></div>
@@ -46,10 +47,10 @@ const DemoopHero = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 sm:w-64 sm:h-64 lg:w-96 lg:h-96 bg-gradient-to-r from-demoop-green/5 to-demoop-blue/5 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="container mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 relative z-10 py-16 sm:py-20 lg:py-24">
+      <div className="container mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 relative z-10 py-20 sm:py-24 lg:py-32">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
-          {/* Content Section - Primeiro no mobile, segundo no desktop */}
-          <div className="text-center lg:text-left order-1 lg:order-1">
+          {/* Content Section - Left */}
+          <div className="text-center lg:text-left order-2 lg:order-1">
             <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl font-light mb-3 sm:mb-4 lg:mb-6 opacity-0 animate-slide-up tracking-tight leading-tight">
               <span className="block text-demoop-primary">conheça</span>
               <span className="block text-demoop-blue">nossos produtos</span>
@@ -74,8 +75,8 @@ const DemoopHero = () => {
             </div>
           </div>
           
-          {/* Products Section - Segundo no mobile, primeiro no desktop */}
-          <div className="grid grid-cols-1 gap-3 sm:gap-4 opacity-0 animate-slide-up animation-delay-600 order-2 lg:order-2">
+          {/* Products Section - Right */}
+          <div className="grid grid-cols-1 gap-3 sm:gap-4 opacity-0 animate-slide-up animation-delay-600 order-1 lg:order-2">
             {products.map((product, index) => (
               <Card 
                 key={index}
