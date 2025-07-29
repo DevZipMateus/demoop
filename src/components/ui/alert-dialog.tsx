@@ -10,6 +10,14 @@ interface AlertDialogContextType {
 
 const AlertDialogContext = React.createContext<AlertDialogContextType | null>(null)
 
+const useAlertDialogContext = () => {
+  const context = React.useContext(AlertDialogContext)
+  if (!context) {
+    throw new Error('AlertDialog components must be used within an AlertDialog')
+  }
+  return context
+}
+
 const AlertDialog = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & {
@@ -19,12 +27,18 @@ const AlertDialog = React.forwardRef<
 >(({ children, open: controlledOpen, onOpenChange, ...props }, ref) => {
   const [internalOpen, setInternalOpen] = React.useState(false)
   const open = controlledOpen ?? internalOpen
-  const setOpen = onOpenChange ?? setInternalOpen
+  const setOpen = React.useCallback((newOpen: boolean) => {
+    if (onOpenChange) {
+      onOpenChange(newOpen)
+    } else {
+      setInternalOpen(newOpen)
+    }
+  }, [onOpenChange])
   
-  const contextValue: AlertDialogContextType = {
+  const contextValue: AlertDialogContextType = React.useMemo(() => ({
     open,
     setOpen
-  }
+  }), [open, setOpen])
 
   return (
     <AlertDialogContext.Provider value={contextValue}>
@@ -40,12 +54,12 @@ const AlertDialogTrigger = React.forwardRef<
   HTMLButtonElement,
   React.ButtonHTMLAttributes<HTMLButtonElement>
 >(({ children, onClick, ...props }, ref) => {
-  const context = React.useContext(AlertDialogContext)
+  const { setOpen } = useAlertDialogContext()
   
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    context?.setOpen(true)
+  const handleClick = React.useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    setOpen(true)
     onClick?.(e)
-  }
+  }, [setOpen, onClick])
 
   return (
     <button ref={ref} onClick={handleClick} {...props}>

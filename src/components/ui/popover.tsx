@@ -9,6 +9,14 @@ interface PopoverContextType {
 
 const PopoverContext = React.createContext<PopoverContextType | null>(null)
 
+const usePopoverContext = () => {
+  const context = React.useContext(PopoverContext)
+  if (!context) {
+    throw new Error('Popover components must be used within a Popover')
+  }
+  return context
+}
+
 const Popover = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & {
@@ -18,12 +26,18 @@ const Popover = React.forwardRef<
 >(({ children, open: controlledOpen, onOpenChange, ...props }, ref) => {
   const [internalOpen, setInternalOpen] = React.useState(false)
   const open = controlledOpen ?? internalOpen
-  const setOpen = onOpenChange ?? setInternalOpen
+  const setOpen = React.useCallback((newOpen: boolean) => {
+    if (onOpenChange) {
+      onOpenChange(newOpen)
+    } else {
+      setInternalOpen(newOpen)
+    }
+  }, [onOpenChange])
   
-  const contextValue: PopoverContextType = {
+  const contextValue: PopoverContextType = React.useMemo(() => ({
     open,
     setOpen
-  }
+  }), [open, setOpen])
 
   return (
     <PopoverContext.Provider value={contextValue}>
@@ -39,12 +53,12 @@ const PopoverTrigger = React.forwardRef<
   HTMLButtonElement,
   React.ButtonHTMLAttributes<HTMLButtonElement>
 >(({ children, onClick, ...props }, ref) => {
-  const context = React.useContext(PopoverContext)
+  const { open, setOpen } = usePopoverContext()
   
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    context?.setOpen(!context.open)
+  const handleClick = React.useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    setOpen(!open)
     onClick?.(e)
-  }
+  }, [open, setOpen, onClick])
 
   return (
     <button ref={ref} onClick={handleClick} {...props}>

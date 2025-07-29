@@ -10,6 +10,14 @@ interface DialogContextType {
 
 const DialogContext = React.createContext<DialogContextType | null>(null)
 
+const useDialogContext = () => {
+  const context = React.useContext(DialogContext)
+  if (!context) {
+    throw new Error('Dialog components must be used within a Dialog')
+  }
+  return context
+}
+
 const Dialog = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & {
@@ -19,12 +27,18 @@ const Dialog = React.forwardRef<
 >(({ children, open: controlledOpen, onOpenChange, ...props }, ref) => {
   const [internalOpen, setInternalOpen] = React.useState(false)
   const open = controlledOpen ?? internalOpen
-  const setOpen = onOpenChange ?? setInternalOpen
+  const setOpen = React.useCallback((newOpen: boolean) => {
+    if (onOpenChange) {
+      onOpenChange(newOpen)
+    } else {
+      setInternalOpen(newOpen)
+    }
+  }, [onOpenChange])
   
-  const contextValue: DialogContextType = {
+  const contextValue: DialogContextType = React.useMemo(() => ({
     open,
     setOpen
-  }
+  }), [open, setOpen])
 
   return (
     <DialogContext.Provider value={contextValue}>
@@ -40,12 +54,12 @@ const DialogTrigger = React.forwardRef<
   HTMLButtonElement,
   React.ButtonHTMLAttributes<HTMLButtonElement>
 >(({ children, onClick, ...props }, ref) => {
-  const context = React.useContext(DialogContext)
+  const { setOpen } = useDialogContext()
   
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    context?.setOpen(true)
+  const handleClick = React.useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    setOpen(true)
     onClick?.(e)
-  }
+  }, [setOpen, onClick])
 
   return (
     <button ref={ref} onClick={handleClick} {...props}>
@@ -63,12 +77,12 @@ const DialogClose = React.forwardRef<
   HTMLButtonElement,
   React.ButtonHTMLAttributes<HTMLButtonElement>
 >(({ children, onClick, ...props }, ref) => {
-  const context = React.useContext(DialogContext)
+  const { setOpen } = useDialogContext()
   
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    context?.setOpen(false)
+  const handleClick = React.useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    setOpen(false)
     onClick?.(e)
-  }
+  }, [setOpen, onClick])
 
   return (
     <button ref={ref} onClick={handleClick} {...props}>
@@ -82,14 +96,14 @@ const DialogOverlay = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, onClick, ...props }, ref) => {
-  const context = React.useContext(DialogContext)
+  const { open, setOpen } = useDialogContext()
   
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    context?.setOpen(false)
+  const handleClick = React.useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    setOpen(false)
     onClick?.(e)
-  }
+  }, [setOpen, onClick])
 
-  if (!context?.open) return null
+  if (!open) return null
 
   return (
     <div
@@ -109,16 +123,16 @@ const DialogContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, children, ...props }, ref) => {
-  const context = React.useContext(DialogContext)
+  const { open, setOpen } = useDialogContext()
 
   React.useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        context?.setOpen(false)
+        setOpen(false)
       }
     }
 
-    if (context?.open) {
+    if (open) {
       document.addEventListener('keydown', handleEscape)
       document.body.style.overflow = 'hidden'
     }
@@ -127,9 +141,9 @@ const DialogContent = React.forwardRef<
       document.removeEventListener('keydown', handleEscape)
       document.body.style.overflow = 'unset'
     }
-  }, [context?.open, context])
+  }, [open, setOpen])
 
-  if (!context?.open) return null
+  if (!open) return null
 
   return (
     <DialogPortal>
@@ -146,7 +160,7 @@ const DialogContent = React.forwardRef<
         {children}
         <button
           className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none"
-          onClick={() => context?.setOpen(false)}
+          onClick={() => setOpen(false)}
         >
           <X className="h-4 w-4" />
           <span className="sr-only">Close</span>
