@@ -13,13 +13,7 @@ export default {
 	theme: {
 		container: {
 			center: true,
-			padding: {
-				DEFAULT: '1rem',
-				sm: '1.5rem',
-				lg: '2rem',
-				xl: '2.5rem',
-				'2xl': '3rem',
-			},
+			padding: '2rem',
 			screens: {
 				'2xl': '1400px'
 			}
@@ -30,19 +24,9 @@ export default {
 				display: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
 				inter: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
 			},
-			screens: {
-				'xs': '475px',
-				'3xl': '1600px',
-				'4xl': '1920px',
-			},
 			maxWidth: {
 				'8xl': '88rem',
 				'9xl': '96rem',
-			},
-			spacing: {
-				'18': '4.5rem',
-				'88': '22rem',
-				'128': '32rem',
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -148,9 +132,6 @@ export default {
 			},
 			transitionDuration: {
 				'2000': '2000ms',
-			},
-			scale: {
-				'102': '1.02',
 			}
 		}
 	},
