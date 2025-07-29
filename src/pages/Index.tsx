@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import NavBar from '@/components/NavBar';
 import DemoopHero from '@/components/DemoopHero';
@@ -10,7 +11,6 @@ import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import ClickSpark from '@/components/ClickSpark';
 import { useParallax } from '@/hooks/useParallax';
-import ProductCarousel from '@/components/ProductCarousel';
 
 const Index = () => {
   const { getParallaxStyle } = useParallax();
@@ -77,15 +77,12 @@ const Index = () => {
             <DemoopServices />
           </div>
           <div className="section-bg-semi">
-            <ProductCarousel />
-          </div>
-          <div className="section-bg-alt">
             <DemoopTestimonials />
           </div>
-          <div className="section-bg-semi">
+          <div className="section-bg-alt">
             <DemoopLocation />
           </div>
-          <div className="section-bg-alt">
+          <div className="section-bg-semi">
             <DemoopContact />
           </div>
         </div>

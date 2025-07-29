@@ -33,19 +33,10 @@ const NavBar = () => {
   const navLinks = [
     { name: 'Home', id: 'home' },
     { name: 'Produtos', id: 'services' },
-    { name: 'Catálogo', id: 'catalogo', isPage: true },
     { name: 'Depoimentos', id: 'testimonials' },
     { name: 'Localização', id: 'location' },
     { name: 'Contato', id: 'contact' },
   ];
-
-  const handleNavClick = (link: any) => {
-    if (link.isPage) {
-      window.location.href = `/${link.id}`;
-    } else {
-      scrollToSection(link.id);
-    }
-  };
 
   return (
     <header 
@@ -59,8 +50,12 @@ const NavBar = () => {
       <div className="container mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 flex justify-between items-center">
         <div className="flex items-center">
           <a 
-            href="/" 
+            href="#home" 
             className="flex items-center space-x-1 sm:space-x-2 font-display font-bold text-base sm:text-lg lg:text-xl"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('home');
+            }}
           >
             <img 
               src="/lovable-uploads/dabf577d-abec-4c2f-aab4-f1a1c600dc29.png" 
@@ -76,11 +71,11 @@ const NavBar = () => {
           {navLinks.map((link) => (
             <a
               key={link.id}
-              href={link.isPage ? `/${link.id}` : `#${link.id}`}
+              href={`#${link.id}`}
               className="text-demoop-primary hover:text-demoop-blue transition-colors duration-300 text-sm lg:text-base font-medium relative group"
               onClick={(e) => {
                 e.preventDefault();
-                handleNavClick(link);
+                scrollToSection(link.id);
               }}
             >
               {link.name}
@@ -118,7 +113,7 @@ const NavBar = () => {
                 {navLinks.map((link, index) => (
                   <a
                     key={link.id}
-                    href={link.isPage ? `/${link.id}` : `#${link.id}`}
+                    href={`#${link.id}`}
                     className={cn(
                       "text-demoop-primary text-sm sm:text-base font-medium hover:bg-demoop-lightgreen/70 transition-all w-full text-center py-3 sm:py-4 px-3 flex items-center justify-center",
                       "relative overflow-hidden after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-demoop-blue after:transition-all after:duration-300 hover:after:w-1/3"
@@ -127,7 +122,7 @@ const NavBar = () => {
                     onClick={(e) => {
                       e.preventDefault();
                       document.querySelector('[data-state="open"]')?.setAttribute('data-state', 'closed');
-                      setTimeout(() => handleNavClick(link), 100);
+                      setTimeout(() => scrollToSection(link.id), 100);
                     }}
                   >
                     {link.name}
