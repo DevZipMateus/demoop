@@ -1,8 +1,9 @@
+
 import * as React from "react"
 import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-console.log("Dialog component loading...");
+console.log("Custom Dialog component loading (replacing Radix UI)...");
 
 interface DialogContextType {
   open: boolean
@@ -14,6 +15,7 @@ const DialogContext = React.createContext<DialogContextType | null>(null)
 const useDialogContext = () => {
   const context = React.useContext(DialogContext)
   if (!context) {
+    console.error('Dialog components must be used within a Dialog')
     throw new Error('Dialog components must be used within a Dialog')
   }
   return context
@@ -26,12 +28,12 @@ const Dialog = React.forwardRef<
     onOpenChange?: (open: boolean) => void
   }
 >(({ children, open: controlledOpen, onOpenChange, ...props }, ref) => {
-  console.log("Dialog component rendering...");
+  console.log("Custom Dialog component rendering...");
   
   const [internalOpen, setInternalOpen] = React.useState(false)
   const open = controlledOpen ?? internalOpen
   const setOpen = React.useCallback((newOpen: boolean) => {
-    console.log("Dialog setOpen called with:", newOpen);
+    console.log("Custom Dialog setOpen called with:", newOpen);
     if (onOpenChange) {
       onOpenChange(newOpen)
     } else {
@@ -58,13 +60,13 @@ const DialogTrigger = React.forwardRef<
   HTMLButtonElement,
   React.ButtonHTMLAttributes<HTMLButtonElement>
 >(({ children, onClick, ...props }, ref) => {
-  const { setOpen } = useDialogContext()
+  const context = useDialogContext()
   
   const handleClick = React.useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log("DialogTrigger clicked");
-    setOpen(true)
+    console.log("Custom DialogTrigger clicked");
+    context.setOpen(true)
     onClick?.(e)
-  }, [setOpen, onClick])
+  }, [context, onClick])
 
   return (
     <button ref={ref} onClick={handleClick} {...props}>
@@ -82,13 +84,13 @@ const DialogClose = React.forwardRef<
   HTMLButtonElement,
   React.ButtonHTMLAttributes<HTMLButtonElement>
 >(({ children, onClick, ...props }, ref) => {
-  const { setOpen } = useDialogContext()
+  const context = useDialogContext()
   
   const handleClick = React.useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log("DialogClose clicked");
-    setOpen(false)
+    console.log("Custom DialogClose clicked");
+    context.setOpen(false)
     onClick?.(e)
-  }, [setOpen, onClick])
+  }, [context, onClick])
 
   return (
     <button ref={ref} onClick={handleClick} {...props}>
@@ -102,15 +104,15 @@ const DialogOverlay = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, onClick, ...props }, ref) => {
-  const { open, setOpen } = useDialogContext()
+  const context = useDialogContext()
   
   const handleClick = React.useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    console.log("DialogOverlay clicked");
-    setOpen(false)
+    console.log("Custom DialogOverlay clicked");
+    context.setOpen(false)
     onClick?.(e)
-  }, [setOpen, onClick])
+  }, [context, onClick])
 
-  if (!open) return null
+  if (!context.open) return null
 
   return (
     <div
@@ -130,30 +132,30 @@ const DialogContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, children, ...props }, ref) => {
-  const { open, setOpen } = useDialogContext()
+  const context = useDialogContext()
 
   React.useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        console.log("Escape key pressed, closing dialog");
-        setOpen(false)
+        console.log("Escape key pressed, closing custom dialog");
+        context.setOpen(false)
       }
     }
 
-    if (open) {
-      console.log("Dialog opened, adding event listeners");
+    if (context.open) {
+      console.log("Custom Dialog opened, adding event listeners");
       document.addEventListener('keydown', handleEscape)
       document.body.style.overflow = 'hidden'
     }
 
     return () => {
-      console.log("Dialog cleanup");
+      console.log("Custom Dialog cleanup");
       document.removeEventListener('keydown', handleEscape)
       document.body.style.overflow = 'unset'
     }
-  }, [open, setOpen])
+  }, [context.open, context])
 
-  if (!open) return null
+  if (!context.open) return null
 
   return (
     <DialogPortal>
@@ -171,8 +173,8 @@ const DialogContent = React.forwardRef<
         <button
           className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none"
           onClick={() => {
-            console.log("Dialog X button clicked");
-            setOpen(false);
+            console.log("Custom Dialog X button clicked");
+            context.setOpen(false);
           }}
         >
           <X className="h-4 w-4" />

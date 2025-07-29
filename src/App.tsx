@@ -6,19 +6,17 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Catalogo from "./pages/Catalogo";
 import NotFound from "./pages/NotFound";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 const queryClient = new QueryClient();
 
-console.log("App component loading - checking for Radix imports...");
-
-// Check if any Radix components are accidentally imported
-console.log("Checking window object for Radix components:", typeof window !== 'undefined' && window);
+console.log("App component loading - all Radix UI packages should be removed...");
 
 const App = () => {
-  console.log("App component rendering - starting render process...");
+  console.log("App component rendering with error boundary...");
   
-  try {
-    return (
+  return (
+    <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
         <Toaster />
         <Sonner />
@@ -31,11 +29,8 @@ const App = () => {
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>
-    );
-  } catch (error) {
-    console.error("Error in App component render:", error);
-    throw error;
-  }
+    </ErrorBoundary>
+  );
 };
 
 export default App;
