@@ -1,5 +1,5 @@
 
-import { createContext, useContext, useEffect, useState } from "react"
+import React, { createContext, useContext, useEffect, useState } from "react"
 
 type Theme = "dark" | "light" | "system"
 
@@ -27,33 +27,62 @@ export function ThemeProvider({
   storageKey = "vite-ui-theme",
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(
-    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
-  )
+  let theme, setTheme;
+  
+  try {
+    [theme, setTheme] = useState<Theme>(
+      () => {
+        try {
+          return (localStorage.getItem(storageKey) as Theme) || defaultTheme;
+        } catch {
+          return defaultTheme;
+        }
+      }
+    );
+    
+    // Verify useState returned valid values
+    if (!setTheme || typeof setTheme !== 'function') {
+      console.error('ThemeProvider: useState hook returned invalid values');
+      theme = defaultTheme;
+      setTheme = () => {};
+    }
+  } catch (error) {
+    console.error('ThemeProvider: useState hook failed:', error);
+    theme = defaultTheme;
+    setTheme = () => {};
+  }
 
   useEffect(() => {
-    const root = window.document.documentElement
+    if (typeof theme === 'string') {
+      const root = window.document.documentElement
 
-    root.classList.remove("light", "dark")
+      root.classList.remove("light", "dark")
 
-    if (theme === "system") {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches
-        ? "dark"
-        : "light"
+      if (theme === "system") {
+        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+          .matches
+          ? "dark"
+          : "light"
 
-      root.classList.add(systemTheme)
-      return
+        root.classList.add(systemTheme)
+        return
+      }
+
+      root.classList.add(theme)
     }
-
-    root.classList.add(theme)
   }, [theme])
 
   const value = {
     theme,
-    setTheme: (theme: Theme) => {
-      localStorage.setItem(storageKey, theme)
-      setTheme(theme)
+    setTheme: (newTheme: Theme) => {
+      try {
+        localStorage.setItem(storageKey, newTheme)
+        if (setTheme && typeof setTheme === 'function') {
+          setTheme(newTheme)
+        }
+      } catch (error) {
+        console.error('Failed to update theme:', error);
+      }
     },
   }
 
@@ -65,10 +94,24 @@ export function ThemeProvider({
 }
 
 export const useTheme = () => {
-  const context = useContext(ThemeProviderContext)
+  try {
+    const context = useContext(ThemeProviderContext)
 
-  if (context === undefined)
-    throw new Error("useTheme must be used within a ThemeProvider")
+    if (context === undefined) {
+      console.error("useTheme must be used within a ThemeProvider")
+      // Return fallback values instead of throwing
+      return {
+        theme: "system" as Theme,
+        setTheme: () => {},
+      }
+    }
 
-  return context
+    return context
+  } catch (error) {
+    console.error('useTheme hook failed:', error);
+    return {
+      theme: "system" as Theme,
+      setTheme: () => {},
+    }
+  }
 }

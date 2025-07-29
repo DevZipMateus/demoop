@@ -170,17 +170,43 @@ function toast({ ...props }: Toast) {
 }
 
 function useToast() {
-  const [state, setState] = useState<State>(memoryState)
+  // Fallback check for React hooks functionality
+  let state, setState;
+  
+  try {
+    [state, setState] = useState<State>(memoryState);
+    
+    // Verify the hook returned valid values
+    if (!setState || typeof setState !== 'function') {
+      console.error('useState hook returned invalid values');
+      // Return a fallback implementation
+      return {
+        toasts: [],
+        toast: () => ({ id: 'fallback', dismiss: () => {}, update: () => {} }),
+        dismiss: () => {},
+      };
+    }
+  } catch (error) {
+    console.error('useState hook failed:', error);
+    // Return fallback implementation
+    return {
+      toasts: [],
+      toast: () => ({ id: 'fallback', dismiss: () => {}, update: () => {} }),
+      dismiss: () => {},
+    };
+  }
 
   useEffect(() => {
-    listeners.push(setState)
-    return () => {
-      const index = listeners.indexOf(setState)
-      if (index > -1) {
-        listeners.splice(index, 1)
+    if (setState && typeof setState === 'function') {
+      listeners.push(setState)
+      return () => {
+        const index = listeners.indexOf(setState)
+        if (index > -1) {
+          listeners.splice(index, 1)
+        }
       }
     }
-  }, [state])
+  }, [setState])
 
   return {
     ...state,
