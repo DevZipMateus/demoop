@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -39,7 +38,7 @@ const DemoopHero = () => {
   ];
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-white via-demoop-lightgreen/20 to-demoop-lightblue/20">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-white via-demoop-lightgreen/20 to-demoop-lightblue/20 pt-28 sm:pt-32 lg:pt-36">
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-10 left-2 sm:left-4 w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-demoop-green/10 rounded-full blur-3xl animate-float"></div>
@@ -47,7 +46,7 @@ const DemoopHero = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 sm:w-64 sm:h-64 lg:w-96 lg:h-96 bg-gradient-to-r from-demoop-green/5 to-demoop-blue/5 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="container mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 relative z-10 py-20 sm:py-24 lg:py-32">
+      <div className="container mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 relative z-10 py-16 sm:py-20 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
           {/* Content Section - Primeiro no mobile, segundo no desktop */}
           <div className="text-center lg:text-left order-1 lg:order-1">
