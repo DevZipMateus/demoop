@@ -9,25 +9,33 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-console.log("App component loading...");
+console.log("App component loading - checking for Radix imports...");
+
+// Check if any Radix components are accidentally imported
+console.log("Checking window object for Radix components:", typeof window !== 'undefined' && window);
 
 const App = () => {
-  console.log("App component rendering...");
+  console.log("App component rendering - starting render process...");
   
-  return (
-    <QueryClientProvider client={queryClient}>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/catalogo" element={<Catalogo />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </QueryClientProvider>
-  );
+  try {
+    return (
+      <QueryClientProvider client={queryClient}>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/catalogo" element={<Catalogo />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </QueryClientProvider>
+    );
+  } catch (error) {
+    console.error("Error in App component render:", error);
+    throw error;
+  }
 };
 
 export default App;
