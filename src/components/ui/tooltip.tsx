@@ -4,19 +4,37 @@ import * as TooltipPrimitive from "@radix-ui/react-tooltip"
 
 import { cn } from "@/lib/utils"
 
-// Create a safe TooltipProvider that checks for React availability
+// Create a safe TooltipProvider that completely avoids Radix when React is not available
 const SafeTooltipProvider = ({ children, ...props }: React.ComponentProps<typeof TooltipPrimitive.Provider>) => {
-  // Add safety check for React
-  if (!React || !React.useState) {
-    console.error("React is not available in TooltipProvider");
+  console.log("SafeTooltipProvider rendering with React check:", {
+    React: !!React,
+    useState: !!React?.useState,
+    useEffect: !!React?.useEffect,
+    windowReact: !!(typeof window !== 'undefined' && (window as any).React)
+  });
+
+  // More comprehensive React availability check
+  const isReactAvailable = React && 
+    React.useState && 
+    React.useEffect && 
+    React.createElement &&
+    typeof React.useState === 'function';
+
+  if (!isReactAvailable) {
+    console.error("React hooks are not available in TooltipProvider, rendering children without Radix UI wrapper");
     return <>{children}</>;
   }
 
-  return (
-    <TooltipPrimitive.Provider {...props}>
-      {children}
-    </TooltipPrimitive.Provider>
-  );
+  try {
+    return (
+      <TooltipPrimitive.Provider {...props}>
+        {children}
+      </TooltipPrimitive.Provider>
+    );
+  } catch (error) {
+    console.error("Error rendering TooltipPrimitive.Provider:", error);
+    return <>{children}</>;
+  }
 };
 
 const TooltipProvider = SafeTooltipProvider;
