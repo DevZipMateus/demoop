@@ -1,9 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { products } from '@/data/products';
 
 const ProductCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -14,6 +16,10 @@ const ProductCarousel = () => {
 
     return () => clearInterval(interval);
   }, []);
+
+  const handleCatalogoClick = () => {
+    navigate('/catalogo');
+  };
 
   return (
     <section id="produtos-preview" className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-demoop-lightgreen/10 to-demoop-lightblue/10">
@@ -58,7 +64,7 @@ const ProductCarousel = () => {
 
         <div className="text-center mt-8">
           <button
-            onClick={() => window.location.href = '/catalogo'}
+            onClick={handleCatalogoClick}
             className="bg-demoop-primary hover:bg-demoop-darkgreen text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:scale-105"
           >
             Ver Catálogo Completo
