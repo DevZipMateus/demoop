@@ -2,7 +2,7 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
 
-// Completely standalone tooltip implementation without any Radix UI dependencies
+// Completely standalone tooltip implementation
 interface TooltipContextValue {
   isOpen: boolean;
   setIsOpen: (open: boolean) => void;
@@ -10,35 +10,22 @@ interface TooltipContextValue {
 
 const TooltipContext = React.createContext<TooltipContextValue | null>(null);
 
-const TooltipProvider = ({ children, ...props }: { 
-  children: React.ReactNode; 
-  delayDuration?: number;
-  skipDelayDuration?: number;
-  disableHoverableContent?: boolean;
-}) => {
-  // Simple provider that just renders children without any complex state management
-  return <div {...props}>{children}</div>;
+const TooltipProvider = ({ children }: { children: React.ReactNode }) => {
+  // Simple provider that just renders children without any state management
+  return <>{children}</>;
 };
 
-const Tooltip = ({ children, open, defaultOpen = false, onOpenChange, ...props }: { 
-  children: React.ReactNode; 
-  open?: boolean;
-  defaultOpen?: boolean;
-  onOpenChange?: (open: boolean) => void;
-}) => {
-  const [isOpen, setIsOpen] = React.useState(defaultOpen);
+const Tooltip = ({ children }: { children: React.ReactNode }) => {
+  const [isOpen, setIsOpen] = React.useState(false);
   
   const contextValue: TooltipContextValue = {
-    isOpen: open !== undefined ? open : isOpen,
-    setIsOpen: (openState: boolean) => {
-      setIsOpen(openState);
-      onOpenChange?.(openState);
-    }
+    isOpen,
+    setIsOpen
   };
 
   return (
     <TooltipContext.Provider value={contextValue}>
-      <div style={{ position: 'relative', display: 'inline-block' }} {...props}>
+      <div className="relative inline-block">
         {children}
       </div>
     </TooltipContext.Provider>
@@ -98,7 +85,7 @@ const TooltipContent = React.forwardRef<
     <div
       ref={ref}
       className={cn(
-        "absolute z-50 rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95",
+        "absolute z-50 rounded-md border bg-white px-3 py-1.5 text-sm shadow-md",
         sideClasses[side],
         className
       )}
