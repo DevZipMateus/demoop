@@ -20,10 +20,10 @@ const FallbackTooltip = ({ children }: { children: React.ReactNode }) => {
 };
 
 const FallbackTooltipTrigger = React.forwardRef<
-  HTMLElement,
-  React.HTMLAttributes<HTMLElement> & { asChild?: boolean }
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & { asChild?: boolean }
 >(({ children, asChild, ...props }, ref) => (
-  <div ref={ref as any} {...props}>
+  <div ref={ref} {...props}>
     {children}
   </div>
 ));
@@ -52,37 +52,39 @@ const FallbackTooltipContent = React.forwardRef<
 ));
 FallbackTooltipContent.displayName = "FallbackTooltipContent";
 
-// Safe component loader that handles React availability
-const SafeTooltipComponents = () => {
-  // Check if React is fully available
-  const isReactAvailable = React && 
-    React.useState && 
-    React.useEffect && 
-    React.createElement &&
-    typeof React.useState === 'function';
-
-  console.log("SafeTooltipComponents - React available:", isReactAvailable);
-
-  if (!isReactAvailable) {
-    console.log("Using fallback tooltip components");
-    return {
-      TooltipProvider: FallbackTooltipProvider,
-      Tooltip: FallbackTooltip,
-      TooltipTrigger: FallbackTooltipTrigger,
-      TooltipContent: FallbackTooltipContent
-    };
-  }
-
+// Check if we can safely use Radix UI
+const canUseRadixUI = () => {
   try {
-    // Dynamically import Radix UI components only when React is available
-    const TooltipPrimitive = require("@radix-ui/react-tooltip");
+    // Check if React is available and working
+    if (!React || typeof React.useState !== 'function') {
+      return false;
+    }
     
-    const RadixTooltipProvider = ({ children, ...props }: React.ComponentProps<typeof TooltipPrimitive.Provider>) => {
+    // Check if we can access Radix UI without errors
+    const RadixTooltip = require("@radix-ui/react-tooltip");
+    return RadixTooltip && RadixTooltip.Provider && RadixTooltip.Root;
+  } catch (error) {
+    console.log("Cannot use Radix UI tooltip, using fallbacks:", error);
+    return false;
+  }
+};
+
+// Initialize components based on availability
+let TooltipProvider: React.ComponentType<any>;
+let Tooltip: React.ComponentType<any>;
+let TooltipTrigger: React.ComponentType<any>;
+let TooltipContent: React.ComponentType<any>;
+
+if (canUseRadixUI()) {
+  try {
+    const RadixTooltip = require("@radix-ui/react-tooltip");
+    
+    const RadixTooltipProvider = ({ children, ...props }: React.ComponentProps<typeof RadixTooltip.Provider>) => {
       try {
         return (
-          <TooltipPrimitive.Provider {...props}>
+          <RadixTooltip.Provider {...props}>
             {children}
-          </TooltipPrimitive.Provider>
+          </RadixTooltip.Provider>
         );
       } catch (error) {
         console.error("Error in RadixTooltipProvider:", error);
@@ -91,10 +93,10 @@ const SafeTooltipComponents = () => {
     };
 
     const RadixTooltipContent = React.forwardRef<
-      React.ElementRef<typeof TooltipPrimitive.Content>,
-      React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>
+      React.ElementRef<typeof RadixTooltip.Content>,
+      React.ComponentPropsWithoutRef<typeof RadixTooltip.Content>
     >(({ className, sideOffset = 4, ...props }, ref) => (
-      <TooltipPrimitive.Content
+      <RadixTooltip.Content
         ref={ref}
         sideOffset={sideOffset}
         className={cn(
@@ -104,30 +106,26 @@ const SafeTooltipComponents = () => {
         {...props}
       />
     ));
-    RadixTooltipContent.displayName = TooltipPrimitive.Content.displayName;
+    RadixTooltipContent.displayName = RadixTooltip.Content.displayName;
 
     console.log("Using Radix UI tooltip components");
-    return {
-      TooltipProvider: RadixTooltipProvider,
-      Tooltip: TooltipPrimitive.Root,
-      TooltipTrigger: TooltipPrimitive.Trigger,
-      TooltipContent: RadixTooltipContent
-    };
+    TooltipProvider = RadixTooltipProvider;
+    Tooltip = RadixTooltip.Root;
+    TooltipTrigger = RadixTooltip.Trigger;
+    TooltipContent = RadixTooltipContent;
   } catch (error) {
-    console.error("Failed to load Radix UI components, using fallbacks:", error);
-    return {
-      TooltipProvider: FallbackTooltipProvider,
-      Tooltip: FallbackTooltip,
-      TooltipTrigger: FallbackTooltipTrigger,
-      TooltipContent: FallbackTooltipContent
-    };
+    console.error("Failed to initialize Radix UI components:", error);
+    TooltipProvider = FallbackTooltipProvider;
+    Tooltip = FallbackTooltip;
+    TooltipTrigger = FallbackTooltipTrigger;
+    TooltipContent = FallbackTooltipContent;
   }
-};
+} else {
+  console.log("Using fallback tooltip components");
+  TooltipProvider = FallbackTooltipProvider;
+  Tooltip = FallbackTooltip;
+  TooltipTrigger = FallbackTooltipTrigger;
+  TooltipContent = FallbackTooltipContent;
+}
 
-// Initialize components
-const components = SafeTooltipComponents();
-
-export const TooltipProvider = components.TooltipProvider;
-export const Tooltip = components.Tooltip;
-export const TooltipTrigger = components.TooltipTrigger;
-export const TooltipContent = components.TooltipContent;
+export { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent };
