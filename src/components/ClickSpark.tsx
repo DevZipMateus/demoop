@@ -1,5 +1,5 @@
 
-import { useRef, useEffect, useCallback } from "react";
+import React, { useRef, useEffect, useCallback } from "react";
 
 interface ClickSparkProps {
   sparkColor?: string;
@@ -22,6 +22,16 @@ const ClickSpark = ({
   extraScale = 1.0,
   children
 }: ClickSparkProps) => {
+  // Add safety check for React hooks availability
+  if (!React || typeof React.useRef !== 'function') {
+    console.warn('React hooks not available in ClickSpark, returning children only');
+    return (
+      <div className="relative w-full h-full">
+        {children}
+      </div>
+    );
+  }
+
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const sparksRef = useRef<any[]>([]); 
   const startTimeRef = useRef<number | null>(null); 
