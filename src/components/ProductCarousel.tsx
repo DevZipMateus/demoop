@@ -16,14 +16,14 @@ const ProductCarousel = () => {
   }, []);
 
   return (
-    <section id="catalogo" className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-demoop-lightgreen/10 to-demoop-lightblue/10">
+    <section id="produtos-preview" className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-demoop-lightgreen/10 to-demoop-lightblue/10">
       <div className="container mx-auto px-3 sm:px-4 lg:px-6 xl:px-8">
         <div className="text-center mb-8 sm:mb-12">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-demoop-primary mb-4">
-            Catálogo de Produtos
+            Prévia dos Produtos
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
-            Conheça nossa linha completa de produtos de limpeza
+            Conheça alguns dos nossos produtos de limpeza
           </p>
         </div>
 

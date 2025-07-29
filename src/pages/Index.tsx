@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import NavBar from '@/components/NavBar';
 import DemoopHero from '@/components/DemoopHero';
@@ -73,19 +74,19 @@ const Index = () => {
           <div className="section-bg-semi">
             <DemoopAbout />
           </div>
-          <div className="section-bg-alt">
+          <div className="section-bg-alt" id="services">
             <DemoopServices />
           </div>
           <div className="section-bg-semi">
             <ProductCarousel />
           </div>
-          <div className="section-bg-alt">
+          <div className="section-bg-alt" id="testimonials">
             <DemoopTestimonials />
           </div>
-          <div className="section-bg-semi">
+          <div className="section-bg-semi" id="location">
             <DemoopLocation />
           </div>
-          <div className="section-bg-alt">
+          <div className="section-bg-alt" id="contact">
             <DemoopContact />
           </div>
         </div>

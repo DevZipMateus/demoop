@@ -35,7 +35,7 @@ const NavBar = () => {
 
   const navLinks = [
     { name: 'Home', id: 'home' },
-    { name: 'Produtos', id: 'services' },
+    { name: 'Produtos', id: 'produtos-preview' },
     { name: 'Catálogo', id: 'catalogo', isPage: true },
     { name: 'Depoimentos', id: 'testimonials' },
     { name: 'Localização', id: 'location' },
@@ -44,9 +44,10 @@ const NavBar = () => {
 
   const handleNavClick = (link: any) => {
     if (link.isPage) {
+      // Para páginas específicas, sempre navegar para a rota
       navigate(`/${link.id}`);
     } else {
-      // Se não estamos na página principal, navegar para lá primeiro
+      // Para seções, verificar se estamos na página principal
       if (location.pathname !== '/') {
         navigate('/');
         // Aguardar a navegação e então rolar para a seção
