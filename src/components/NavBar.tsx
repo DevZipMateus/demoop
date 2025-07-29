@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
 import { Menu, X } from 'lucide-react';
@@ -33,24 +34,29 @@ const NavBar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', id: 'home' },
+    { name: 'Home', id: 'home', isRoute: true, route: '/' },
     { name: 'Produtos', id: 'produtos-preview' },
-    { name: 'Catálogo', id: 'produtos-preview' },
+    { name: 'Catálogo', id: 'catalogo', isRoute: true, route: '/catalogo' },
     { name: 'Depoimentos', id: 'testimonials' },
     { name: 'Localização', id: 'location' },
     { name: 'Contato', id: 'contact' },
   ];
 
   const handleNavClick = (link: any) => {
-    // Para todas as seções, verificar se estamos na página principal
-    if (location.pathname !== '/') {
-      navigate('/');
-      // Aguardar a navegação e então rolar para a seção
-      setTimeout(() => {
-        scrollToSection(link.id);
-      }, 100);
+    if (link.isRoute) {
+      // Para rotas, sempre navegar
+      navigate(link.route);
     } else {
-      scrollToSection(link.id);
+      // Para seções, verificar se estamos na página principal
+      if (location.pathname !== '/') {
+        navigate('/');
+        // Aguardar a navegação e então rolar para a seção
+        setTimeout(() => {
+          scrollToSection(link.id);
+        }, 100);
+      } else {
+        scrollToSection(link.id);
+      }
     }
   };
 
