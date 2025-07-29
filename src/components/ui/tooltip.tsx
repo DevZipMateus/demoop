@@ -2,7 +2,7 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
 
-// Safe tooltip implementation without any external dependencies
+// Completely custom tooltip implementation without any external dependencies
 const TooltipProvider = ({ children, delayDuration, skipDelayDuration, disableHoverableContent, ...props }: { 
   children: React.ReactNode; 
   delayDuration?: number;
@@ -10,12 +10,6 @@ const TooltipProvider = ({ children, delayDuration, skipDelayDuration, disableHo
   disableHoverableContent?: boolean;
   [key: string]: any;
 }) => {
-  // Add safety check for React hooks availability
-  if (!React || typeof React.useState !== 'function') {
-    console.warn('React hooks not available in TooltipProvider, returning children only');
-    return <>{children}</>;
-  }
-  
   return <>{children}</>;
 };
 
