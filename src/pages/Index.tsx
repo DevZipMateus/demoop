@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import NavBar from '@/components/NavBar';
 import DemoopHero from '@/components/DemoopHero';
@@ -11,17 +10,10 @@ import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import ClickSpark from '@/components/ClickSpark';
 import { useParallax } from '@/hooks/useParallax';
+import ProductCarousel from '@/components/ProductCarousel';
 
 const Index = () => {
-  // Add safety check for the parallax hook
-  let getParallaxStyle;
-  try {
-    const parallax = useParallax();
-    getParallaxStyle = parallax.getParallaxStyle;
-  } catch (error) {
-    console.warn('Parallax hook failed, using fallback:', error);
-    getParallaxStyle = () => ({ transform: 'translateY(0px)' });
-  }
+  const { getParallaxStyle } = useParallax();
 
   useEffect(() => {
     // Ensure smooth scroll behavior works properly
@@ -85,12 +77,15 @@ const Index = () => {
             <DemoopServices />
           </div>
           <div className="section-bg-semi">
-            <DemoopTestimonials />
+            <ProductCarousel />
           </div>
           <div className="section-bg-alt">
-            <DemoopLocation />
+            <DemoopTestimonials />
           </div>
           <div className="section-bg-semi">
+            <DemoopLocation />
+          </div>
+          <div className="section-bg-alt">
             <DemoopContact />
           </div>
         </div>

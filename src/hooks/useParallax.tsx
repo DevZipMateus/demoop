@@ -1,16 +1,7 @@
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const useParallax = () => {
-  // Add safety check for React hooks availability
-  if (!React || typeof React.useState !== 'function' || typeof React.useEffect !== 'function') {
-    console.warn('React hooks not available, returning default parallax values');
-    return {
-      scrollY: 0,
-      getParallaxStyle: () => ({ transform: 'translateY(0px)' }),
-    };
-  }
-
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {

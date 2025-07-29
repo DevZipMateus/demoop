@@ -1,6 +1,4 @@
-
-import React from "react";
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from "@/hooks/use-toast"
 import {
   Toast,
   ToastClose,
@@ -8,45 +6,28 @@ import {
   ToastProvider,
   ToastTitle,
   ToastViewport,
-} from "@/components/ui/toast";
+} from "@/components/ui/toast"
 
 export function Toaster() {
-  console.log("Main Toaster rendering");
-  
-  // Add safety check for React hooks availability
-  if (!React || typeof React.useState !== 'function') {
-    console.warn('React hooks not available in Toaster, returning empty component');
-    return null;
-  }
-  
-  // Add safety check for the hook
-  let toasts;
-  try {
-    const toastHook = useToast();
-    toasts = toastHook.toasts;
-  } catch (error) {
-    console.error("Error in useToast hook:", error);
-    toasts = [];
-  }
+  const { toasts } = useToast()
 
   return (
     <ToastProvider>
-      <ToastViewport>
-        {toasts.map(function ({ id, title, description, action, ...props }) {
-          return (
-            <Toast key={id} {...props}>
-              <div className="grid gap-1">
-                {title && <ToastTitle>{title}</ToastTitle>}
-                {description && (
-                  <ToastDescription>{description}</ToastDescription>
-                )}
-              </div>
-              {action}
-              <ToastClose onClick={() => props.onOpenChange?.(false)} />
-            </Toast>
-          );
-        })}
-      </ToastViewport>
+      {toasts.map(function ({ id, title, description, action, ...props }) {
+        return (
+          <Toast key={id} {...props}>
+            <div className="grid gap-1">
+              {title && <ToastTitle>{title}</ToastTitle>}
+              {description && (
+                <ToastDescription>{description}</ToastDescription>
+              )}
+            </div>
+            {action}
+            <ToastClose />
+          </Toast>
+        )
+      })}
+      <ToastViewport />
     </ToastProvider>
-  );
+  )
 }
