@@ -16,6 +16,11 @@ const Catalogo = () => {
     window.open(`https://wa.me/5548999982838?text=${encodeURIComponent(message)}`, '_blank');
   };
 
+  const handleCompleteCatalogClick = () => {
+    const message = `Olá! Gostaria de ver o catálogo completo de produtos da Demoop.`;
+    window.open(`https://wa.me/5548999982838?text=${encodeURIComponent(message)}`, '_blank');
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <NavBar />
@@ -63,6 +68,58 @@ const Catalogo = () => {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Nova seção do catálogo completo */}
+          <div className="mt-16 sm:mt-20 lg:mt-24">
+            <div className="bg-gradient-to-br from-demoop-lightgreen/20 to-demoop-lightblue/20 rounded-3xl p-8 sm:p-12 lg:p-16 border border-demoop-green/20 shadow-xl">
+              <div className="text-center max-w-4xl mx-auto">
+                <div className="mb-6 sm:mb-8">
+                  <div className="text-6xl sm:text-7xl mb-4">🛍️</div>
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-demoop-primary mb-4">
+                    Temos Muito Mais Produtos!
+                  </h2>
+                  <p className="text-lg sm:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed">
+                    Esta é apenas uma amostra do nosso catálogo. Temos centenas de produtos de limpeza, 
+                    utensílios domésticos e muito mais. Entre em contato conosco para conhecer nossa 
+                    linha completa e encontrar exatamente o que você precisa.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-10">
+                  <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-demoop-green/20">
+                    <div className="text-2xl sm:text-3xl mb-2">500+</div>
+                    <div className="text-sm sm:text-base text-muted-foreground">Produtos disponíveis</div>
+                  </div>
+                  <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-demoop-green/20">
+                    <div className="text-2xl sm:text-3xl mb-2">🚚</div>
+                    <div className="text-sm sm:text-base text-muted-foreground">Entrega rápida</div>
+                  </div>
+                  <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-demoop-green/20">
+                    <div className="text-2xl sm:text-3xl mb-2">⭐</div>
+                    <div className="text-sm sm:text-base text-muted-foreground">Melhor qualidade</div>
+                  </div>
+                </div>
+
+                <button
+                  onClick={handleCompleteCatalogClick}
+                  className="group bg-gradient-to-r from-demoop-green to-demoop-darkgreen hover:from-demoop-darkgreen hover:to-demoop-green text-white font-bold text-lg sm:text-xl py-4 sm:py-6 px-8 sm:px-12 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 border-2 border-white/20"
+                >
+                  <div className="flex items-center justify-center space-x-3">
+                    <span>📱</span>
+                    <span>Ver Catálogo Completo</span>
+                    <span className="transform group-hover:translate-x-1 transition-transform duration-300">→</span>
+                  </div>
+                  <div className="text-sm sm:text-base opacity-90 mt-1">
+                    Fale conosco no WhatsApp
+                  </div>
+                </button>
+
+                <p className="text-xs sm:text-sm text-muted-foreground mt-6 opacity-75">
+                  * Resposta rápida garantida • Atendimento personalizado
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </main>
