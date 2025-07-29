@@ -6,8 +6,13 @@ import WhatsAppButton from '@/components/WhatsAppButton';
 import { products } from '@/data/products';
 
 const Catalogo = () => {
+  const cleanPrice = (price: string) => {
+    return price.replace(/\s*-\s*\d+$/, '');
+  };
+
   const handleWhatsAppClick = (price: string) => {
-    const message = `Olá! Gostaria de mais informações sobre o produto de R$ ${price}.`;
+    const cleanedPrice = cleanPrice(price);
+    const message = `Olá! Gostaria de mais informações sobre o produto de R$ ${cleanedPrice}.`;
     window.open(`https://wa.me/5548999982838?text=${encodeURIComponent(message)}`, '_blank');
   };
 
@@ -35,7 +40,7 @@ const Catalogo = () => {
                 <div className="aspect-square relative overflow-hidden">
                   <img
                     src={product.image}
-                    alt={`Produto R$ ${product.price}`}
+                    alt={`Produto R$ ${cleanPrice(product.price)}`}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
@@ -47,10 +52,10 @@ const Catalogo = () => {
                 
                 <div className="p-3 sm:p-4 text-center">
                   <div className="text-lg sm:text-xl lg:text-2xl font-bold text-demoop-blue mb-2">
-                    R$ {product.price.replace(' - 2', '')}
+                    R$ {cleanPrice(product.price)}
                   </div>
                   <button
-                    onClick={() => handleWhatsAppClick(product.price.replace(' - 2', ''))}
+                    onClick={() => handleWhatsAppClick(product.price)}
                     className="w-full bg-demoop-primary hover:bg-demoop-darkgreen text-white py-2 px-3 rounded-lg text-sm font-medium transition-all duration-300 hover:shadow-md"
                   >
                     Consultar
