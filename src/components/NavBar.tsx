@@ -91,13 +91,8 @@ const NavBar = () => {
 
         {/* Mobile Navigation */}
         <Sheet>
-          <SheetTrigger asChild>
-            <button 
-              className="md:hidden text-demoop-primary p-1 sm:p-2 rounded-md hover:bg-demoop-lightgreen/50 transition-colors" 
-              aria-label="Open menu"
-            >
-              <Menu size={18} className="sm:w-5 sm:h-5" />
-            </button>
+          <SheetTrigger className="md:hidden text-demoop-primary p-1 sm:p-2 rounded-md hover:bg-demoop-lightgreen/50 transition-colors">
+            <Menu size={18} className="sm:w-5 sm:h-5" />
           </SheetTrigger>
           <SheetContent side="right" className="w-[85%] sm:w-[80%] p-0 bg-gradient-to-br from-white to-demoop-lightgreen border-l-4 border-demoop-blue">
             <div className="flex flex-col h-full">
