@@ -1,4 +1,3 @@
-
 import * as React from "react"
 import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -51,7 +50,7 @@ const Dialog = ({ children, open, onOpenChange, ...props }: {
 const DialogTrigger = React.forwardRef<
   HTMLButtonElement,
   React.ButtonHTMLAttributes<HTMLButtonElement>
->(({ children, className, asChild, ...props }, ref) => {
+>(({ children, className, ...props }, ref) => {
   const context = React.useContext ? React.useContext(DialogContext) : null;
   
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
