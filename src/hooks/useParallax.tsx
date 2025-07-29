@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 export const useParallax = () => {
   // Add safety check for React hooks availability
-  if (!React || typeof React.useState !== 'function') {
+  if (!React || typeof React.useState !== 'function' || typeof React.useEffect !== 'function') {
     console.warn('React hooks not available, returning default parallax values');
     return {
       scrollY: 0,

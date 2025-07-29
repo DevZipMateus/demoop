@@ -13,6 +13,12 @@ import {
 export function Toaster() {
   console.log("Main Toaster rendering");
   
+  // Add safety check for React hooks availability
+  if (!React || typeof React.useState !== 'function') {
+    console.warn('React hooks not available in Toaster, returning empty component');
+    return null;
+  }
+  
   // Add safety check for the hook
   let toasts;
   try {

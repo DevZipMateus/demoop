@@ -2,6 +2,25 @@
 import React, { useState, useEffect } from 'react';
 
 const WhatsAppButton = () => {
+  // Add safety check for React hooks availability
+  if (!React || typeof React.useState !== 'function') {
+    console.warn('React hooks not available in WhatsAppButton, returning fallback button');
+    return (
+      <button
+        onClick={() => window.open('https://wa.me/5548999982838?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20os%20produtos%20da%20Demoop.', '_blank')}
+        className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-16 h-16 rounded-full shadow-xl bg-demoop-green hover:bg-demoop-darkgreen transition-all duration-500"
+        aria-label="Contate-nos pelo WhatsApp"
+      >
+        <img 
+          src="/lovable-uploads/90d99fc5-2fe3-4a3b-a15c-64bc0c7f8cef.png" 
+          alt="WhatsApp" 
+          className="w-10 h-10"
+        />
+        <span className="sr-only">WhatsApp</span>
+      </button>
+    );
+  }
+
   const [isVisible, setIsVisible] = useState(false);
   const [isPulsing, setIsPulsing] = useState(false);
   
