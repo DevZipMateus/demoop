@@ -3,7 +3,15 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 
 // Simple fallback tooltip implementation
-const FallbackTooltipProvider = ({ children }: { children: React.ReactNode }) => {
+const FallbackTooltipProvider = ({ 
+  children, 
+  delayDuration,
+  ...props 
+}: { 
+  children: React.ReactNode;
+  delayDuration?: number;
+  [key: string]: any;
+}) => {
   return <>{children}</>;
 };
 
@@ -13,8 +21,8 @@ const FallbackTooltip = ({ children }: { children: React.ReactNode }) => {
 
 const FallbackTooltipTrigger = React.forwardRef<
   HTMLElement,
-  React.HTMLAttributes<HTMLElement>
->(({ children, ...props }, ref) => (
+  React.HTMLAttributes<HTMLElement> & { asChild?: boolean }
+>(({ children, asChild, ...props }, ref) => (
   <div ref={ref as any} {...props}>
     {children}
   </div>
@@ -23,12 +31,18 @@ FallbackTooltipTrigger.displayName = "FallbackTooltipTrigger";
 
 const FallbackTooltipContent = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & { sideOffset?: number }
->(({ className, children, ...props }, ref) => (
+  React.HTMLAttributes<HTMLDivElement> & { 
+    sideOffset?: number;
+    side?: "top" | "right" | "bottom" | "left";
+    align?: "start" | "center" | "end";
+    hidden?: boolean;
+  }
+>(({ className, children, sideOffset, side, align, hidden, ...props }, ref) => (
   <div
     ref={ref}
     className={cn(
       "z-50 overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md",
+      hidden && "hidden",
       className
     )}
     {...props}
