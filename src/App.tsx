@@ -14,6 +14,12 @@ const queryClient = new QueryClient();
 const App = () => {
   console.log("App.tsx: Inside App component render");
   
+  // Add safety check for React hooks availability
+  if (!React || typeof React.useState !== 'function') {
+    console.warn('React hooks not available in App, returning minimal structure');
+    return <div>Loading...</div>;
+  }
+  
   return (
     <QueryClientProvider client={queryClient}>
       <Toaster />
