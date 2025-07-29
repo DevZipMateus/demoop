@@ -1,7 +1,8 @@
-
 import * as React from "react"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
+
+console.log("AlertDialog component loading...");
 
 interface AlertDialogContextType {
   open: boolean
@@ -25,9 +26,12 @@ const AlertDialog = React.forwardRef<
     onOpenChange?: (open: boolean) => void
   }
 >(({ children, open: controlledOpen, onOpenChange, ...props }, ref) => {
+  console.log("AlertDialog component rendering...");
+  
   const [internalOpen, setInternalOpen] = React.useState(false)
   const open = controlledOpen ?? internalOpen
   const setOpen = React.useCallback((newOpen: boolean) => {
+    console.log("AlertDialog setOpen called with:", newOpen);
     if (onOpenChange) {
       onOpenChange(newOpen)
     } else {
@@ -57,6 +61,7 @@ const AlertDialogTrigger = React.forwardRef<
   const { setOpen } = useAlertDialogContext()
   
   const handleClick = React.useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log("AlertDialogTrigger clicked");
     setOpen(true)
     onClick?.(e)
   }, [setOpen, onClick])
@@ -102,10 +107,12 @@ const AlertDialogContent = React.forwardRef<
 
   React.useEffect(() => {
     if (context?.open) {
+      console.log("AlertDialog opened, setting body overflow");
       document.body.style.overflow = 'hidden'
     }
 
     return () => {
+      console.log("AlertDialog cleanup");
       document.body.style.overflow = 'unset'
     }
   }, [context?.open])
@@ -189,6 +196,7 @@ const AlertDialogAction = React.forwardRef<
   const context = React.useContext(AlertDialogContext)
   
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log("AlertDialogAction clicked");
     onClick?.(e)
     context?.setOpen(false)
   }
@@ -211,6 +219,7 @@ const AlertDialogCancel = React.forwardRef<
   const context = React.useContext(AlertDialogContext)
   
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log("AlertDialogCancel clicked");
     onClick?.(e)
     context?.setOpen(false)
   }

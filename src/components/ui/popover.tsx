@@ -2,6 +2,8 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
 
+console.log("Popover component loading...");
+
 interface PopoverContextType {
   open: boolean
   setOpen: (open: boolean) => void
@@ -24,9 +26,12 @@ const Popover = React.forwardRef<
     onOpenChange?: (open: boolean) => void
   }
 >(({ children, open: controlledOpen, onOpenChange, ...props }, ref) => {
+  console.log("Popover component rendering...");
+  
   const [internalOpen, setInternalOpen] = React.useState(false)
   const open = controlledOpen ?? internalOpen
   const setOpen = React.useCallback((newOpen: boolean) => {
+    console.log("Popover setOpen called with:", newOpen);
     if (onOpenChange) {
       onOpenChange(newOpen)
     } else {
@@ -56,6 +61,7 @@ const PopoverTrigger = React.forwardRef<
   const { open, setOpen } = usePopoverContext()
   
   const handleClick = React.useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log("PopoverTrigger clicked, current open state:", open);
     setOpen(!open)
     onClick?.(e)
   }, [open, setOpen, onClick])
@@ -80,22 +86,26 @@ const PopoverContent = React.forwardRef<
   React.useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
+        console.log("Escape key pressed, closing popover");
         context?.setOpen(false)
       }
     }
 
     const handleClickOutside = (e: MouseEvent) => {
       if (ref && 'current' in ref && ref.current && !ref.current.contains(e.target as Node)) {
+        console.log("Click outside popover, closing");
         context?.setOpen(false)
       }
     }
 
     if (context?.open) {
+      console.log("Popover opened, adding event listeners");
       document.addEventListener('keydown', handleEscape)
       document.addEventListener('mousedown', handleClickOutside)
     }
 
     return () => {
+      console.log("Popover cleanup");
       document.removeEventListener('keydown', handleEscape)
       document.removeEventListener('mousedown', handleClickOutside)
     }

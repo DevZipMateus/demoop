@@ -1,7 +1,8 @@
-
 import * as React from "react"
 import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
+
+console.log("Dialog component loading...");
 
 interface DialogContextType {
   open: boolean
@@ -25,9 +26,12 @@ const Dialog = React.forwardRef<
     onOpenChange?: (open: boolean) => void
   }
 >(({ children, open: controlledOpen, onOpenChange, ...props }, ref) => {
+  console.log("Dialog component rendering...");
+  
   const [internalOpen, setInternalOpen] = React.useState(false)
   const open = controlledOpen ?? internalOpen
   const setOpen = React.useCallback((newOpen: boolean) => {
+    console.log("Dialog setOpen called with:", newOpen);
     if (onOpenChange) {
       onOpenChange(newOpen)
     } else {
@@ -57,6 +61,7 @@ const DialogTrigger = React.forwardRef<
   const { setOpen } = useDialogContext()
   
   const handleClick = React.useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log("DialogTrigger clicked");
     setOpen(true)
     onClick?.(e)
   }, [setOpen, onClick])
@@ -80,6 +85,7 @@ const DialogClose = React.forwardRef<
   const { setOpen } = useDialogContext()
   
   const handleClick = React.useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log("DialogClose clicked");
     setOpen(false)
     onClick?.(e)
   }, [setOpen, onClick])
@@ -99,6 +105,7 @@ const DialogOverlay = React.forwardRef<
   const { open, setOpen } = useDialogContext()
   
   const handleClick = React.useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    console.log("DialogOverlay clicked");
     setOpen(false)
     onClick?.(e)
   }, [setOpen, onClick])
@@ -128,16 +135,19 @@ const DialogContent = React.forwardRef<
   React.useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
+        console.log("Escape key pressed, closing dialog");
         setOpen(false)
       }
     }
 
     if (open) {
+      console.log("Dialog opened, adding event listeners");
       document.addEventListener('keydown', handleEscape)
       document.body.style.overflow = 'hidden'
     }
 
     return () => {
+      console.log("Dialog cleanup");
       document.removeEventListener('keydown', handleEscape)
       document.body.style.overflow = 'unset'
     }
@@ -160,7 +170,10 @@ const DialogContent = React.forwardRef<
         {children}
         <button
           className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none"
-          onClick={() => setOpen(false)}
+          onClick={() => {
+            console.log("Dialog X button clicked");
+            setOpen(false);
+          }}
         >
           <X className="h-4 w-4" />
           <span className="sr-only">Close</span>
