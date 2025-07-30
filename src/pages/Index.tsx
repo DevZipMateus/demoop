@@ -43,6 +43,9 @@ const Index = () => {
     };
   }, []);
 
+  // Log before rendering ProductCarousel
+  console.log('Renderizando ProductCarousel...');
+
   return (
     <ClickSpark
       sparkColor="#f97316"
@@ -81,9 +84,7 @@ const Index = () => {
           <div className="section-bg-alt" id="services">
             <DemoopServices />
           </div>
-          {/* Garantindo que o ProductCarousel esteja visível */}
           <div className="section-bg-semi">
-            {console.log('Renderizando ProductCarousel...')}
             <ProductCarousel />
           </div>
           <div className="section-bg-alt" id="testimonials">
