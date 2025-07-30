@@ -70,7 +70,7 @@ const ProductCarousel = () => {
           <div className="aspect-square bg-white rounded-2xl shadow-2xl overflow-hidden border-4 border-demoop-green/20">
             <img
               src={products[currentIndex]?.image || '/placeholder.svg'}
-              alt={`Produto ${products[currentIndex]?.name || 'Desconhecido'}`}
+              alt={`Produto R$ ${products[currentIndex]?.price || 'Preço não disponível'}`}
               className="w-full h-full object-cover transition-all duration-500 ease-in-out"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
