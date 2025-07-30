@@ -10,10 +10,14 @@ const NavBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  console.log('NavBar renderizando na rota:', location.pathname);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      console.warn(`Seção ${sectionId} não encontrada`);
     }
   };
 
@@ -43,6 +47,8 @@ const NavBar = () => {
   ];
 
   const handleNavClick = (link: any) => {
+    console.log('Clique no menu:', link.name, 'isRoute:', link.isRoute);
+    
     if (link.isRoute) {
       // Para rotas, sempre navegar
       navigate(link.route);
@@ -56,11 +62,12 @@ const NavBar = () => {
     } else {
       // Para seções, verificar se estamos na página principal
       if (location.pathname !== '/') {
+        console.log('Navegando para home antes de rolar para seção');
         navigate('/');
         // Aguardar a navegação e então rolar para a seção
         setTimeout(() => {
           scrollToSection(link.id);
-        }, 100);
+        }, 300);
       } else {
         scrollToSection(link.id);
       }
@@ -99,12 +106,15 @@ const NavBar = () => {
           </button>
         </div>
 
-        {/* Desktop Navigation */}
+        {/* Desktop Navigation - Garantindo que seja visível */}
         <nav className="hidden md:flex space-x-4 lg:space-x-6">
           {navLinks.map((link) => (
             <button
               key={link.id}
-              className="text-demoop-primary hover:text-demoop-blue transition-colors duration-300 text-sm lg:text-base font-medium relative group"
+              className={cn(
+                "text-demoop-primary hover:text-demoop-blue transition-colors duration-300 text-sm lg:text-base font-medium relative group",
+                scrolled ? "text-demoop-primary" : "text-white hover:text-demoop-lightgreen"
+              )}
               onClick={() => handleNavClick(link)}
             >
               {link.name}
@@ -115,7 +125,10 @@ const NavBar = () => {
 
         {/* Mobile Navigation */}
         <Sheet>
-          <SheetTrigger className="md:hidden text-demoop-primary p-1 sm:p-2 rounded-md hover:bg-demoop-lightgreen/50 transition-colors">
+          <SheetTrigger className={cn(
+            "md:hidden p-1 sm:p-2 rounded-md hover:bg-demoop-lightgreen/50 transition-colors",
+            scrolled ? "text-demoop-primary" : "text-white"
+          )}>
             <Menu size={18} className="sm:w-5 sm:h-5" />
           </SheetTrigger>
           <SheetContent side="right" className="w-[85%] sm:w-[80%] p-0 bg-gradient-to-br from-white to-demoop-lightgreen border-l-4 border-demoop-blue">

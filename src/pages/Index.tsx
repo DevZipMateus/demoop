@@ -16,7 +16,11 @@ import ProductCarousel from '@/components/ProductCarousel';
 const Index = () => {
   const { getParallaxStyle } = useParallax();
 
+  console.log('Página Index carregando...');
+
   useEffect(() => {
+    console.log('Index useEffect executado');
+    
     // Ensure smooth scroll behavior works properly
     const handleHashChange = () => {
       if (window.location.hash) {
@@ -77,7 +81,9 @@ const Index = () => {
           <div className="section-bg-alt" id="services">
             <DemoopServices />
           </div>
+          {/* Garantindo que o ProductCarousel esteja visível */}
           <div className="section-bg-semi">
+            {console.log('Renderizando ProductCarousel...')}
             <ProductCarousel />
           </div>
           <div className="section-bg-alt" id="testimonials">
