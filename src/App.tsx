@@ -1,6 +1,5 @@
 
 import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
@@ -11,7 +10,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 
 const queryClient = new QueryClient();
 
-console.log("App component loading - all Radix UI packages should be removed...");
+console.log("App component loading - removing problematic Sonner toaster...");
 
 const AppContent = () => {
   useScrollToTop();
@@ -32,11 +31,10 @@ const App = () => {
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
-        <Toaster />
-        <Sonner />
         <BrowserRouter>
           <AppContent />
         </BrowserRouter>
+        <Toaster />
       </QueryClientProvider>
     </ErrorBoundary>
   );
